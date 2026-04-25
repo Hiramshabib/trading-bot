@@ -13,6 +13,7 @@ Usage:
     python backfill.py --dry-run    # preview without writing to DB
 """
 import argparse
+import os
 import warnings
 
 import numpy as np
@@ -21,9 +22,11 @@ import yfinance as yf
 
 import config
 from data.analyst      import fetch_analyst_scores
+from data.downside     import compute_downside_alerts
 from data.fundamentals import fetch_fundamentals_scores
 from data.momentum     import _rsi
 from data.universe     import TOP_50_BY_MARKET_CAP, get_universe
+from output.html_report import export_html
 from scoring.composite import build_composite_scores
 from storage.database  import init_db, run_exists_for_date, save_run_at
 
@@ -105,6 +108,10 @@ def main() -> None:
         "--dry-run", action="store_true",
         help="Preview what would be written without touching the database"
     )
+    parser.add_argument(
+        "--no-html", action="store_true",
+        help="Skip generating HTML reports (DB only)"
+    )
     args = parser.parse_args()
 
     init_db()
@@ -165,7 +172,10 @@ def main() -> None:
     for trade_date in target_days:
         date_str = trade_date.strftime("%Y-%m-%d")
 
-        if run_exists_for_date(date_str):
+        html_path = os.path.join(config.REPORTS_DIR, f"{date_str}_recommendations.html")
+        html_exists = os.path.exists(html_path)
+
+        if run_exists_for_date(date_str) and (args.no_html or html_exists):
             print(f"  {date_str}  already exists -- skipping")
             skipped_exists += 1
             continue
@@ -187,14 +197,25 @@ def main() -> None:
             )
             continue
 
-        # Store at market-close time for that date
-        run_at  = f"{date_str}T16:00:00"
-        run_id  = save_run_at(results, run_at, source="backfill")
-        print(
-            f"  {date_str}  run #{run_id:>4d} saved  "
-            f"top={top['ticker']:6s}  composite={top['composite_score']:.1f}"
-        )
-        inserted += 1
+        # Store at market-close time for that date (skip if already in DB)
+        if not run_exists_for_date(date_str):
+            run_at = f"{date_str}T16:00:00"
+            run_id = save_run_at(results, run_at, source="backfill")
+            print(
+                f"  {date_str}  run #{run_id:>4d} saved  "
+                f"top={top['ticker']:6s}  composite={top['composite_score']:.1f}",
+                end="",
+            )
+            inserted += 1
+        else:
+            print(f"  {date_str}  DB exists, regenerating HTML", end="")
+
+        if not args.no_html and not html_exists:
+            det_df, over_df = compute_downside_alerts(results, momentum_df)
+            export_html(results, det_df, over_df, run_date=trade_date.date())
+            print("  [HTML saved]", end="")
+
+        print()
 
     # ---- Summary ---------------------------------------------------------
     print(f"\n{'-' * 52}")
@@ -206,6 +227,11 @@ def main() -> None:
     print(f"{'-' * 52}\n")
 
     if not args.dry_run and inserted > 0:
+        if not args.no_html:
+            print("Regenerating charts dashboard...")
+            from charts import generate as generate_charts
+            charts_path = generate_charts()
+            print(f"Charts saved: {charts_path}\n")
         print(
             "Run python analytics.py to view performance analysis and "
             "factor attribution reports."
