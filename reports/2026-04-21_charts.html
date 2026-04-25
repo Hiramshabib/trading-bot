@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Bot Charts &mdash; 2026-04-21</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg:      #0f1117;
+    --surface: #1a1d27;
+    --border:  #2d3045;
+    --text:    #e2e8f0;
+    --muted:   #94a3b8;
+    --accent:  #4e9af1;
+    --active:  #1e3a5f;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 24px 16px 48px;
+  }
+  h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 4px; }
+  .subtitle { color: var(--muted); margin-bottom: 20px; font-size: 0.9rem; }
+  .stats-bar {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 18px;
+    min-width: 110px;
+  }
+  .stat-label { color: var(--muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: .05em; }
+  .stat-value { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+  .tab-bar {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .tab-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .tab-btn:hover { border-color: var(--accent); color: var(--text); }
+  .tab-btn.active {
+    background: var(--active);
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 20px 14px;
+  }
+  .card.wide { grid-column: 1 / -1; }
+  .card h2 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 14px;
+  }
+  .chart-wrap { position: relative; height: 300px; }
+  .chart-wrap.tall { height: 380px; }
+  .note { margin-top: 8px; font-size: 0.73rem; color: var(--muted); }
+  .rsi-legend { display: flex; gap: 16px; margin-top: 8px; font-size: 0.76rem; }
+  .rsi-legend span { display: inline-flex; align-items: center; gap: 5px; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+</style>
+</head>
+<body>
+
+<h1>Trading Bot &mdash; Charts Dashboard</h1>
+<p class="subtitle">Generated 2026-04-21 &nbsp;|&nbsp; 38 total runs &nbsp;|&nbsp; 229 unique tickers tracked</p>
+
+<div class="stats-bar">
+  <div class="stat" id="stat-runs"><div class="stat-label">Runs (Period)</div><div class="stat-value">—</div></div>
+  <div class="stat" id="stat-tickers"><div class="stat-label">Tickers</div><div class="stat-value">—</div></div>
+  <div class="stat" id="stat-range"><div class="stat-label">Date Range</div><div class="stat-value" style="font-size:0.95rem">—</div></div>
+  <div class="stat" id="stat-top"><div class="stat-label">Latest Top Pick</div><div class="stat-value" style="color:#f97316">—</div></div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-month="2026-04">Apr 2026 (MTD)</button>
+  <button class="tab-btn" data-month="2026-03">Mar 2026</button>
+</div>
+
+<div class="grid">
+  <div class="card wide">
+    <h2 id="trend-title">Composite Score Trends</h2>
+    <div class="chart-wrap tall"><canvas id="trendChart"></canvas></div>
+    <p class="note">Only dates where each ticker appeared in the run are plotted. Gaps = absent from universe.</p>
+  </div>
+  <div class="card">
+    <h2>#1 Pick &mdash; Composite Score Per Run</h2>
+    <div class="chart-wrap"><canvas id="topPickChart"></canvas></div>
+  </div>
+  <div class="card">
+    <h2 id="factor-title">Avg Factor Scores</h2>
+    <div class="chart-wrap"><canvas id="factorChart"></canvas></div>
+    <p class="note">Momentum / Analyst / Fundamentals avg across period (each 0&ndash;100).</p>
+  </div>
+  <div class="card">
+    <h2>RSI Snapshot &mdash; Latest Run in Period (Top 20)</h2>
+    <div class="chart-wrap"><canvas id="rsiChart"></canvas></div>
+    <div class="rsi-legend">
+      <span><span class="dot" style="background:#ef4444"></span>Overbought &gt;70</span>
+      <span><span class="dot" style="background:#4e9af1"></span>Neutral</span>
+      <span><span class="dot" style="background:#22c55e"></span>Oversold &lt;30</span>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Score Distribution &mdash; Period</h2>
+    <div class="chart-wrap"><canvas id="histoChart"></canvas></div>
+  </div>
+  <div class="card">
+    <h2>Sector Distribution &mdash; Latest Run in Period</h2>
+    <div class="chart-wrap"><canvas id="sectorChart"></canvas></div>
+  </div>
+  <div class="card wide">
+    <h2>Rank Stability &mdash; Avg Rank vs Std Dev</h2>
+    <div class="chart-wrap"><canvas id="stabilityChart"></canvas></div>
+    <p class="note">Best tickers: bottom-left (low avg rank, low variance). Computed across all runs in selected period.</p>
+  </div>
+</div>
+
+<script>
+Chart.defaults.color = "#94a3b8";
+Chart.defaults.borderColor = "#2d3045";
+Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+
+const ALL_DATA = {"2026-03": {"dates": ["2026-03-03", "2026-03-04", "2026-03-05", "2026-03-06", "2026-03-09", "2026-03-10", "2026-03-11", "2026-03-12", "2026-03-13", "2026-03-16", "2026-03-17", "2026-03-18", "2026-03-19", "2026-03-20", "2026-03-23", "2026-03-24", "2026-03-25", "2026-03-26", "2026-03-27", "2026-03-30", "2026-03-31"], "trend_datasets": [{"label": "INTU", "data": [62.52, 58.65, 73.64, 78.91, 78.3, 69.21, 69.15, 68.96, 71.21, 72.65, 79.19, 78.59, 83.75, 83.75, 83.75, 81.65, 81.81, 79.59, 66.0, 69.59, 70.84], "borderColor": "#4e9af1", "backgroundColor": "#4e9af133", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "MSFT", "data": [58.44, 54.26, 58.03, 60.84, 67.41, 65.3, 65.97, 64.36, 59.71, 58.28, 59.81, 56.65, 55.98, 53.96, 52.68, 52.7, 49.74, 54.53, 52.17, 53.31, 52.85], "borderColor": "#f97316", "backgroundColor": "#f9731633", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "NVDA", "data": [57.45, 57.06, 61.33, 64.55, 72.64, 69.59, 71.07, 68.86, 63.17, 62.19, 63.23, 59.7, 57.45, 52.94, 52.97, 53.29, 54.7, 54.62, 59.36, 58.39, 63.16], "borderColor": "#22c55e", "backgroundColor": "#22c55e33", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "ORCL", "data": [49.68, 49.99, 53.19, 60.68, 67.41, 63.22, 75.65, 63.87, 57.57, 55.79, 54.22, 50.32, 54.45, 47.74, 59.39, 56.39, 50.81, 52.8, 50.33, 49.4, 59.85], "borderColor": "#a855f7", "backgroundColor": "#a855f733", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "NFLX", "data": [62.64, 62.64, 62.64, 62.64, 62.64, 62.64, 62.64, 61.66, 62.64, 62.64, 62.64, 62.64, 56.73, 58.22, 59.77, 62.64, 62.64, 61.78, 55.18, 42.12, 50.36], "borderColor": "#f43f5e", "backgroundColor": "#f43f5e33", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "CRM", "data": [53.59, 45.4, 55.63, 58.52, 62.78, 60.17, 63.81, 67.99, 59.94, 62.61, 59.05, 60.79, 59.12, 62.6, 59.62, 53.71, 47.86, 57.43, 47.43, 54.12, 56.05], "borderColor": "#06b6d4", "backgroundColor": "#06b6d433", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "AMD", "data": [42.61, 42.61, 42.61, 53.33, 70.32, 65.9, 64.25, 59.2, 54.63, 54.33, 53.96, 58.06, 67.56, 61.96, 63.43, 72.26, 76.01, 60.83, 64.93, 60.71, 69.51], "borderColor": "#eab308", "backgroundColor": "#eab30833", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "SPGI", "data": [42.83, 37.27, 45.99, 48.97, 50.81, 51.21, 51.95, 58.85, 59.18, 54.98, 57.59, 53.58, 53.9, 53.27, 53.57, 49.29, 43.86, 53.23, 47.13, 49.77, 51.63], "borderColor": "#10b981", "backgroundColor": "#10b98133", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "MA", "data": [50.81, 43.18, 43.82, 44.87, 45.46, 45.56, 48.56, 46.1, 43.98, 45.54, 47.46, 40.8, 42.78, 46.34, 42.97, 51.78, 53.67, 56.29, 48.04, 50.9, 47.27], "borderColor": "#ec4899", "backgroundColor": "#ec489933", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "AVGO", "data": [45.7, 42.39, 52.99, 58.39, 69.32, 63.19, 62.65, 57.9, 45.68, 45.03, 46.23, 41.13, 44.63, 41.2, 48.2, 47.78, 49.15, 48.14, 48.38, 41.63, 50.37], "borderColor": "#8b5cf6", "backgroundColor": "#8b5cf633", "tension": 0.3, "spanGaps": true, "pointRadius": 3}], "factor_labels": ["INTU", "MSFT", "NVDA", "ORCL", "NFLX", "CRM", "AMD", "SPGI", "MA", "AVGO"], "factor_datasets": [{"label": "Momentum", "data": [76.6, 38.2, 37.0, 48.4, 93.4, 49.6, 43.4, 46.2, 37.4, 43.0], "backgroundColor": "#4e9af1"}, {"label": "Analyst", "data": [100.0, 92.1, 79.4, 83.9, 35.0, 90.0, 42.0, 69.7, 68.6, 65.9], "backgroundColor": "#f97316"}, {"label": "Fundamentals", "data": [45.8, 48.6, 74.2, 39.3, 40.5, 35.6, 100.0, 38.3, 38.1, 43.5], "backgroundColor": "#22c55e"}], "sector": {"labels": ["Technology", "Healthcare", "Financial Services", "Consumer Defensive", "Consumer Cyclical", "Communication Services", "Industrials", "Energy", "Utilities", "Basic Materials"], "values": [11, 10, 9, 6, 4, 3, 3, 2, 1, 1]}, "sector_colors": ["#4e9af1", "#f97316", "#22c55e", "#a855f7", "#f43f5e", "#06b6d4", "#eab308", "#10b981", "#ec4899", "#8b5cf6"], "histo": {"labels": ["0-10", "10-20", "20-30", "30-40", "40-50", "50-60", "60-70", "70-80", "80-90", "90-100"], "values": [0, 66, 176, 361, 258, 112, 57, 15, 5, 0]}, "top_pick": {"dates": ["2026-03-03", "2026-03-04", "2026-03-05", "2026-03-06", "2026-03-09", "2026-03-10", "2026-03-11", "2026-03-12", "2026-03-13", "2026-03-16", "2026-03-17", "2026-03-18", "2026-03-19", "2026-03-20", "2026-03-23", "2026-03-24", "2026-03-25", "2026-03-26", "2026-03-27", "2026-03-30", "2026-03-31"], "tickers": ["NFLX", "NFLX", "INTU", "INTU", "INTU", "NVDA", "ORCL", "INTU", "INTU", "INTU", "INTU", "INTU", "INTU", "INTU", "INTU", "INTU", "INTU", "INTU", "INTU", "INTU", "INTU"], "scores": [62.64, 62.64, 73.64, 78.91, 78.3, 69.59, 75.65, 68.96, 71.21, 72.65, 79.19, 78.59, 83.75, 83.75, 83.75, 81.65, 81.81, 79.59, 66.0, 69.59, 70.84]}, "rsi": {"tickers": ["INTU", "AMD", "NVDA", "ORCL", "CRM", "XOM", "MSFT", "SPGI", "CVX", "AVGO", "NFLX", "AMZN", "BAC", "MA", "TMO", "COST", "LLY", "NEE", "ACN", "V"], "rsi": [46.6, 49.1, 38.1, 33.6, 43.0, 81.9, 26.1, 47.9, 77.8, 34.8, 53.9, 46.1, 51.4, 47.6, 48.3, 52.3, 31.9, 55.2, 46.5, 42.0], "colors": ["#4e9af1", "#4e9af1", "#4e9af1", "#4e9af1", "#4e9af1", "#ef4444", "#22c55e", "#4e9af1", "#ef4444", "#4e9af1", "#4e9af1", "#4e9af1", "#4e9af1", "#4e9af1", "#4e9af1", "#4e9af1", "#4e9af1", "#4e9af1", "#4e9af1", "#4e9af1"]}, "stability": [{"label": "INTU", "x": 1.2, "y": 0.5}, {"label": "NVDA", "x": 3.6, "y": 1.9}, {"label": "NFLX", "x": 4.8, "y": 4.3}, {"label": "CRM", "x": 5.3, "y": 2.5}, {"label": "MSFT", "x": 5.4, "y": 1.7}, {"label": "AMD", "x": 5.6, "y": 4.5}, {"label": "ORCL", "x": 6.3, "y": 2.2}, {"label": "SPGI", "x": 10.0, "y": 4.3}, {"label": "AVGO", "x": 11.3, "y": 4.1}, {"label": "MA", "x": 11.8, "y": 4.9}], "run_count": 21, "total_tickers": 50, "latest_date": "2026-03-31", "latest_top_pick": "INTU"}, "2026-04": {"dates": ["2026-04-01", "2026-04-02", "2026-04-06", "2026-04-07", "2026-04-08", "2026-04-09", "2026-04-10", "2026-04-12", "2026-04-13", "2026-04-14", "2026-04-15", "2026-04-16", "2026-04-17", "2026-04-18", "2026-04-19", "2026-04-20", "2026-04-21"], "trend_datasets": [{"label": "NVDA", "data": [66.8, 66.79, 66.21, 63.3, 69.08, 70.43, 71.1, 70.08, 66.83, 68.66, 69.98, 68.85, 65.88, 66.65, 66.05, 65.56, 67.47], "borderColor": "#4e9af1", "backgroundColor": "#4e9af133", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "AMD", "data": [82.61, 82.61, 82.61, 72.16, 82.61, 82.61, 82.61, 82.5, 82.61, 83.59, 91.02, 92.32, 90.97, 91.39, 91.07, 90.5, 90.24], "borderColor": "#f97316", "backgroundColor": "#f9731633", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "MSFT", "data": [53.32, 54.99, 53.32, 55.16, 56.55, 59.27, 57.03, 56.65, 56.4, 57.79, 53.09, 54.41, 53.58, 54.59, 54.74, 54.44, 54.4], "borderColor": "#22c55e", "backgroundColor": "#22c55e33", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "AVGO", "data": [57.91, 54.87, 48.94, 53.2, 62.45, 63.89, 68.19, 66.88, 68.35, 68.46, 58.87, 61.07, 54.47, 57.5, 57.1, 56.69, 55.3], "borderColor": "#a855f7", "backgroundColor": "#a855f733", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "GOOGL", "data": [54.37, 49.77, 54.35, 58.81, 56.87, 55.61, 52.94, 52.79, 50.63, 51.8, 48.38, 46.95, 43.27, 44.91, 44.87, 44.55, 45.14], "borderColor": "#f43f5e", "backgroundColor": "#f43f5e33", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "META", "data": [36.56, 37.02, 40.92, 52.25, 53.11, 55.53, 53.78, 53.37, 51.3, 53.19, 51.83, 48.11, 45.32, 46.56, 46.53, 45.94, 45.72], "borderColor": "#06b6d4", "backgroundColor": "#06b6d433", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "ORCL", "data": [57.19, 55.49, 51.74, 62.17, 52.28, 51.11, 45.71, 50.58, 57.83, 60.35, 57.76, 60.34, 60.1, 58.82, 59.35, 58.25, 55.63], "borderColor": "#eab308", "backgroundColor": "#eab30833", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "AMZN", "data": [53.05, 43.26, 47.36, 61.88, 53.08, 60.72, 60.61, 60.23, 57.94, 59.22, 53.38, 49.27, 42.34, 43.32, 42.56, 41.83, 43.1], "borderColor": "#10b981", "backgroundColor": "#10b98133", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "BAC", "data": [51.89, 47.61, 52.22, 64.17, 56.89, 57.67, 54.65, 53.46, 54.48, 54.32, 45.88, 47.27, 42.63, 43.97, 43.84, 43.5, 44.62], "borderColor": "#ec4899", "backgroundColor": "#ec489933", "tension": 0.3, "spanGaps": true, "pointRadius": 3}, {"label": "BLK", "data": [32.08, 34.5, 35.57, 57.44, 50.53, 49.95, 48.59, 48.85, 50.33, 51.34, 44.36, 50.39, 45.64, 47.43, 48.29, 48.05, 48.38], "borderColor": "#8b5cf6", "backgroundColor": "#8b5cf633", "tension": 0.3, "spanGaps": true, "pointRadius": 3}], "factor_labels": ["NVDA", "AMD", "MSFT", "AVGO", "GOOGL", "META", "ORCL", "AMZN", "BAC", "BLK"], "factor_datasets": [{"label": "Momentum", "data": [51.0, 88.8, 36.1, 68.9, 51.1, 44.3, 47.5, 62.0, 61.5, 51.2], "backgroundColor": "#4e9af1"}, {"label": "Analyst", "data": [82.9, 45.8, 92.4, 69.4, 59.1, 73.1, 86.1, 62.8, 54.5, 58.0], "backgroundColor": "#f97316"}, {"label": "Fundamentals", "data": [74.2, 100.0, 48.6, 43.5, 40.2, 35.9, 39.3, 31.2, 36.0, 30.8], "backgroundColor": "#22c55e"}], "sector": {"labels": ["Technology", "Healthcare", "Financial Services", "Consumer Defensive", "Consumer Cyclical", "Communication Services", "Industrials", "Energy", "Utilities", "Basic Materials"], "values": [11, 10, 9, 6, 4, 3, 3, 2, 1, 1]}, "sector_colors": ["#4e9af1", "#f97316", "#22c55e", "#a855f7", "#f43f5e", "#06b6d4", "#eab308", "#10b981", "#ec4899", "#8b5cf6"], "histo": {"labels": ["0-10", "10-20", "20-30", "30-40", "40-50", "50-60", "60-70", "70-80", "80-90", "90-100"], "values": [167, 80, 221, 441, 375, 162, 42, 7, 11, 8]}, "top_pick": {"dates": ["2026-04-01", "2026-04-02", "2026-04-06", "2026-04-07", "2026-04-07", "2026-04-07", "2026-04-07", "2026-04-07", "2026-04-08", "2026-04-09", "2026-04-10", "2026-04-12", "2026-04-12", "2026-04-12", "2026-04-13", "2026-04-14", "2026-04-15", "2026-04-15", "2026-04-15", "2026-04-16", "2026-04-17", "2026-04-18", "2026-04-19", "2026-04-20", "2026-04-21"], "tickers": ["AMD", "AMD", "AMD", "PTHS", "PTHS", "AIXI", "AIXI", "AMD", "AMD", "AMD", "AMD", "AMD", "AMD", "AVGO", "AMD", "AMD", "AMD", "AMD", "AMD", "AMD", "AMD", "AMD", "AMD", "AMD", "AMD"], "scores": [82.61, 82.61, 82.61, 66.25, 66.25, 55.0, 55.0, 72.16, 82.61, 82.61, 82.61, 82.5, 82.5, 68.85, 82.61, 83.59, 82.61, 91.49, 91.02, 92.32, 90.97, 91.39, 91.07, 90.5, 90.24]}, "rsi": {"tickers": ["AMD", "NVDA", "ORCL", "AVGO", "MSFT", "BLK", "LLY", "AMGN", "META", "GOOGL", "CSCO", "BAC", "INTU", "TXN", "AMZN", "AAPL", "TMO", "NFLX", "MA", "GS"], "rsi": [96.5, 96.5, 79.3, 92.9, 86.5, 77.8, 60.3, 53.3, 87.4, 91.1, 88.3, 87.7, 40.5, 92.4, 93.4, 78.4, 72.0, 52.7, 64.7, 83.6], "colors": ["#ef4444", "#ef4444", "#ef4444", "#ef4444", "#ef4444", "#ef4444", "#4e9af1", "#4e9af1", "#ef4444", "#ef4444", "#ef4444", "#ef4444", "#4e9af1", "#ef4444", "#ef4444", "#ef4444", "#ef4444", "#4e9af1", "#4e9af1", "#ef4444"]}, "stability": [{"label": "NVDA", "x": 3.3, "y": 5.2}, {"label": "AMD", "x": 4.2, "y": 9.8}, {"label": "AVGO", "x": 5.5, "y": 5.9}, {"label": "MSFT", "x": 7.1, "y": 5.5}, {"label": "ORCL", "x": 7.8, "y": 5.8}, {"label": "BAC", "x": 9.1, "y": 3.6}, {"label": "AMZN", "x": 10.1, "y": 7.4}, {"label": "GOOGL", "x": 10.6, "y": 7.0}, {"label": "META", "x": 12.9, "y": 9.9}, {"label": "BLK", "x": 14.9, "y": 10.2}], "run_count": 17, "total_tickers": 229, "latest_date": "2026-04-21", "latest_top_pick": "AMD"}};
+const PALETTE  = ["#4e9af1", "#f97316", "#22c55e", "#a855f7", "#f43f5e", "#06b6d4", "#eab308", "#10b981", "#ec4899", "#8b5cf6", "#3b82f6", "#ef4444", "#84cc16", "#f59e0b", "#14b8a6"];
+
+// ---- Chart instances ----
+let trendChart, topPickChart, factorChart, rsiChart, histoChart, sectorChart, stabilityChart;
+
+function makeChart(id, cfg) {
+  const el = document.getElementById(id);
+  return new Chart(el, cfg);
+}
+
+function initCharts() {
+  trendChart = makeChart("trendChart", {
+    type: "line",
+    data: { labels: [], datasets: [] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: "index", intersect: false },
+      plugins: { legend: { position: "top", labels: { boxWidth: 12, padding: 12 } } },
+      scales: {
+        x: { ticks: { maxRotation: 45 } },
+        y: { min: 0, max: 100, title: { display: true, text: "Composite Score" } },
+      },
+    },
+  });
+
+  topPickChart = makeChart("topPickChart", {
+    type: "line",
+    data: { labels: [], datasets: [] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            title: (items) => items[0].label,
+            label: (item) => ` Score: ${item.raw}  (${item.chart._tickers?.[item.dataIndex] ?? ""})`,
+          },
+        },
+      },
+      scales: {
+        x: { ticks: { maxRotation: 45 } },
+        y: { min: 0, max: 100, title: { display: true, text: "Score" } },
+      },
+    },
+  });
+
+  factorChart = makeChart("factorChart", {
+    type: "bar",
+    data: { labels: [], datasets: [] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: "top" } },
+      scales: {
+        x: { stacked: false },
+        y: { min: 0, max: 100, title: { display: true, text: "Avg Score" } },
+      },
+    },
+  });
+
+  rsiChart = makeChart("rsiChart", {
+    type: "bar",
+    data: { labels: [], datasets: [{ label: "RSI-14", data: [], backgroundColor: [] }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { min: 0, max: 100, title: { display: true, text: "RSI" } } },
+    },
+  });
+
+  histoChart = makeChart("histoChart", {
+    type: "bar",
+    data: { labels: [], datasets: [{ label: "Count", data: [], backgroundColor: "#4e9af1aa", borderColor: "#4e9af1", borderWidth: 1 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { title: { display: true, text: "Score Range" } },
+        y: { title: { display: true, text: "Frequency" } },
+      },
+    },
+  });
+
+  sectorChart = makeChart("sectorChart", {
+    type: "doughnut",
+    data: { labels: [], datasets: [{ data: [], backgroundColor: [], borderColor: "#1a1d27", borderWidth: 2 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: "right", labels: { boxWidth: 14, padding: 10 } } },
+    },
+  });
+
+  stabilityChart = makeChart("stabilityChart", {
+    type: "bubble",
+    data: { datasets: [] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: "top", labels: { boxWidth: 12, padding: 10 } },
+        tooltip: {
+          callbacks: {
+            label: (item) => ` ${item.dataset.label}  avg rank ${item.raw.x}  σ ${item.raw.y}`,
+          },
+        },
+      },
+      scales: {
+        x: { title: { display: true, text: "Avg Rank (lower = better)" } },
+        y: { title: { display: true, text: "Std Dev of Rank" } },
+      },
+    },
+  });
+}
+
+function updateCharts(month) {
+  const d = ALL_DATA[month];
+  if (!d) return;
+
+  // Stats bar
+  document.querySelector("#stat-runs .stat-value").textContent     = d.run_count;
+  document.querySelector("#stat-tickers .stat-value").textContent  = d.total_tickers;
+  document.querySelector("#stat-range .stat-value").textContent    = d.dates.length > 0
+    ? (d.dates[0] === d.dates[d.dates.length - 1] ? d.dates[0] : d.dates[0] + " → " + d.dates[d.dates.length - 1])
+    : "—";
+  document.querySelector("#stat-top .stat-value").textContent      = d.latest_top_pick;
+
+  // Titles
+  const topNLabel = d.trend_datasets.length + " most frequent tickers";
+  document.getElementById("trend-title").textContent  = "Composite Score Trends — " + topNLabel;
+  document.getElementById("factor-title").textContent = "Avg Factor Scores — " + topNLabel;
+
+  // 1. Trend
+  trendChart.data.labels   = d.dates;
+  trendChart.data.datasets = d.trend_datasets;
+  trendChart.update();
+
+  // 2. Top-pick
+  topPickChart.data.labels              = d.top_pick.dates;
+  topPickChart.data.datasets[0]         = {
+    label: "Top Pick Score",
+    data: d.top_pick.scores,
+    borderColor: "#f97316",
+    backgroundColor: "#f9731633",
+    tension: 0.3,
+    pointRadius: 4,
+    fill: true,
+  };
+  topPickChart._tickers = d.top_pick.tickers;
+  topPickChart.update();
+
+  // 3. Factor
+  factorChart.data.labels   = d.factor_labels;
+  factorChart.data.datasets = d.factor_datasets;
+  factorChart.update();
+
+  // 4. RSI
+  rsiChart.data.labels                              = d.rsi.tickers;
+  rsiChart.data.datasets[0].data                   = d.rsi.rsi;
+  rsiChart.data.datasets[0].backgroundColor        = d.rsi.colors;
+  rsiChart.update();
+
+  // 5. Histogram
+  histoChart.data.labels            = d.histo.labels;
+  histoChart.data.datasets[0].data  = d.histo.values;
+  histoChart.update();
+
+  // 6. Sector
+  sectorChart.data.labels                        = d.sector.labels;
+  sectorChart.data.datasets[0].data              = d.sector.values;
+  sectorChart.data.datasets[0].backgroundColor   = d.sector_colors;
+  sectorChart.update();
+
+  // 7. Stability (bubble)
+  stabilityChart.data.datasets = d.stability.map((pt, i) => ({
+    label: pt.label,
+    data: [{ x: pt.x, y: pt.y, r: 8 }],
+    backgroundColor: PALETTE[i % PALETTE.length] + "bb",
+    borderColor:     PALETTE[i % PALETTE.length],
+  }));
+  stabilityChart.update();
+}
+
+// ---- Tab switching ----
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    updateCharts(btn.dataset.month);
+  });
+});
+
+// ---- Init ----
+initCharts();
+const firstTab = document.querySelector(".tab-btn.active") || document.querySelector(".tab-btn");
+if (firstTab) updateCharts(firstTab.dataset.month);
+</script>
+
+</body>
+</html>

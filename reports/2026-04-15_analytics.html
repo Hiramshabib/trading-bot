@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trading Bot Analytics -- 2026-04-15</title>
+  <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0f1117; color: #e2e8f0; padding: 2rem; }
+h1   { font-size: 1.6rem; font-weight: 700; color: #f8fafc; margin-bottom: 0.25rem; }
+.subtitle { color: #94a3b8; margin-bottom: 2.5rem; font-size: 0.9rem; }
+h2   { font-size: 1.1rem; font-weight: 600; color: #cbd5e1; margin: 2rem 0 0.75rem; border-bottom: 1px solid #1e293b; padding-bottom: 0.4rem; }
+p.note { font-size: 0.78rem; color: #64748b; margin-bottom: 0.75rem; }
+table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+th    { text-align: left; padding: 0.45rem 0.75rem; background: #1e293b; color: #94a3b8; font-weight: 600; border-bottom: 1px solid #334155; }
+td    { padding: 0.4rem 0.75rem; border-bottom: 1px solid #1e293b; }
+tr:hover td { background: #1e293b; }
+.pos  { color: #4ade80; font-weight: 600; }
+.neg  { color: #f87171; font-weight: 600; }
+.stat-grid { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.stat-box  { background: #1e293b; border-radius: 8px; padding: 1rem 1.5rem; min-width: 140px; }
+.stat-box .label { font-size: 0.75rem; color: #64748b; margin-bottom: 0.25rem; }
+.stat-box .value { font-size: 1.5rem; font-weight: 700; color: #f1f5f9; }
+</style>
+</head>
+<body>
+  <h1>Trading Bot Analytics</h1>
+  <p class="subtitle">Generated 2026-04-15 20:00 &nbsp;·&nbsp; top-5 evaluation window</p>
+  
+    <div class="stat-grid">
+      <div class="stat-box"><div class="label">Total Runs</div><div class="value">38</div></div>
+      <div class="stat-box"><div class="label">Date Range</div><div class="value" style="font-size:0.9rem">2026-03-03 -> 2026-04-15</div></div>
+      <div class="stat-box"><div class="label">Avg Alpha (5d)</div>
+        <div class="value neg">-1.0%</div></div>
+      <div class="stat-box"><div class="label">Win Rate vs SPY</div>
+        <div class="value neg">+27.6%</div></div>
+    </div>
+  
+    <h2>Top-5 Pick Performance vs SPY (5-day forward return)</h2>
+    <p class="note">Momentum scores are historically accurate. Analyst & fundamentals scores use today's data as a proxy.</p>
+    
+    <table>
+      <thead><tr><th>date</th><th>top_picks</th><th>avg_return</th><th>spy_return</th><th>alpha</th><th>n_picks</th></tr></thead>
+      <tbody><tr><td>2026-03-03</td><td>NFLX, INTU, MSFT, NVDA, CRM</td><td class="pos">+1.3%</td><td class="neg">-0.5%</td><td class="pos">+1.8%</td><td>5</td></tr><tr><td>2026-03-04</td><td>NFLX, INTU, NVDA, MSFT, ORCL</td><td class="pos">+1.0%</td><td class="neg">-1.3%</td><td class="pos">+2.3%</td><td>5</td></tr><tr><td>2026-03-05</td><td>INTU, NFLX, NVDA, MSFT, CRM</td><td class="neg">-3.0%</td><td class="neg">-2.2%</td><td class="neg">-0.8%</td><td>5</td></tr><tr><td>2026-03-06</td><td>INTU, NVDA, NFLX, MSFT, ORCL</td><td class="neg">-2.6%</td><td class="neg">-1.5%</td><td class="neg">-1.1%</td><td>5</td></tr><tr><td>2026-03-09</td><td>INTU, NVDA, AMD, AVGO, MSFT</td><td class="neg">-3.1%</td><td class="neg">-1.4%</td><td class="neg">-1.7%</td><td>5</td></tr><tr><td>2026-03-10</td><td>NVDA, INTU, AMD, MSFT, ORCL</td><td class="neg">-0.4%</td><td class="neg">-0.9%</td><td class="pos">+0.6%</td><td>5</td></tr><tr><td>2026-03-11</td><td>ORCL, NVDA, INTU, MSFT, AMD</td><td class="neg">-2.7%</td><td class="neg">-2.2%</td><td class="neg">-0.5%</td><td>5</td></tr><tr><td>2026-03-12</td><td>INTU, NVDA, CRM, MSFT, ORCL</td><td class="neg">-1.1%</td><td class="neg">-0.9%</td><td class="neg">-0.2%</td><td>5</td></tr><tr><td>2026-03-13</td><td>INTU, NVDA, NFLX, CRM, MSFT</td><td class="neg">-1.3%</td><td class="neg">-1.8%</td><td class="pos">+0.5%</td><td>5</td></tr><tr><td>2026-03-16</td><td>INTU, NFLX, CRM, NVDA, MSFT</td><td class="neg">-2.2%</td><td class="neg">-1.8%</td><td class="neg">-0.4%</td><td>5</td></tr><tr><td>2026-03-17</td><td>INTU, NVDA, NFLX, MSFT, CRM</td><td class="neg">-5.2%</td><td class="neg">-2.4%</td><td class="neg">-2.9%</td><td>5</td></tr><tr><td>2026-03-18</td><td>INTU, NFLX, CRM, NVDA, AMD</td><td class="neg">-0.8%</td><td class="neg">-0.4%</td><td class="neg">-0.4%</td><td>5</td></tr><tr><td>2026-03-19</td><td>INTU, AMD, CRM, NVDA, NFLX</td><td class="neg">-2.6%</td><td class="neg">-2.0%</td><td class="neg">-0.6%</td><td>5</td></tr><tr><td>2026-03-20</td><td>INTU, CRM, AMD, NFLX, MSFT</td><td class="neg">-4.3%</td><td class="neg">-2.2%</td><td class="neg">-2.0%</td><td>5</td></tr><tr><td>2026-03-23</td><td>INTU, AMD, NFLX, CRM, ORCL</td><td class="neg">-5.0%</td><td class="neg">-3.6%</td><td class="neg">-1.4%</td><td>5</td></tr><tr><td>2026-03-24</td><td>INTU, AMD, NFLX, ORCL, CRM</td><td class="pos">+1.4%</td><td class="neg">-0.4%</td><td class="pos">+1.8%</td><td>5</td></tr><tr><td>2026-03-25</td><td>INTU, AMD, NFLX, NVDA, MA</td><td class="neg">-1.0%</td><td class="neg">-0.2%</td><td class="neg">-0.8%</td><td>5</td></tr><tr><td>2026-03-26</td><td>INTU, NFLX, AMD, CRM, MA</td><td class="pos">+1.9%</td><td class="pos">+1.7%</td><td class="pos">+0.2%</td><td>5</td></tr><tr><td>2026-03-27</td><td>INTU, AMD, NVDA, NFLX, CVX</td><td class="pos">+3.1%</td><td class="pos">+3.9%</td><td class="neg">-0.9%</td><td>5</td></tr><tr><td>2026-03-30</td><td>INTU, AMD, NVDA, CRM, MSFT</td><td class="pos">+3.8%</td><td class="pos">+4.3%</td><td class="neg">-0.5%</td><td>5</td></tr><tr><td>2026-03-31</td><td>INTU, AMD, NVDA, ORCL, CRM</td><td class="pos">+0.1%</td><td class="pos">+3.9%</td><td class="neg">-3.8%</td><td>5</td></tr><tr><td>2026-04-01</td><td>AMD, NVDA, INTU, LLY, AVGO</td><td class="pos">+3.1%</td><td class="pos">+3.8%</td><td class="neg">-0.6%</td><td>5</td></tr><tr><td>2026-04-02</td><td>AMD, NVDA, INTU, CRM, ORCL</td><td class="neg">-2.9%</td><td class="pos">+3.6%</td><td class="neg">-6.5%</td><td>5</td></tr><tr><td>2026-04-06</td><td>AMD, NVDA, GOOGL, MSFT, SPGI</td><td class="pos">+5.6%</td><td class="pos">+4.1%</td><td class="pos">+1.5%</td><td>5</td></tr><tr><td>2026-04-07</td><td>PTHS, CLNN, CVGI, SIDU, AIXI</td><td class="pos">+0.4%</td><td class="pos">+5.3%</td><td class="neg">-4.9%</td><td>5</td></tr><tr><td>2026-04-07</td><td>PTHS, CLNN, CVGI, SIDU, AIXI</td><td class="pos">+0.4%</td><td class="pos">+5.3%</td><td class="neg">-4.9%</td><td>5</td></tr><tr><td>2026-04-07</td><td>AIXI, AGEN, AMZN, GOOGL, GOOG</td><td class="pos">+1.2%</td><td class="pos">+5.3%</td><td class="neg">-4.2%</td><td>5</td></tr><tr><td>2026-04-07</td><td>AIXI, AGEN, SPGI, NVDA, AVGO</td><td class="neg">-1.0%</td><td class="pos">+5.3%</td><td class="neg">-6.4%</td><td>5</td></tr><tr><td>2026-04-07</td><td>AMD, BAC, NVDA, ORCL, AMZN</td><td class="pos">+12.5%</td><td class="pos">+5.3%</td><td class="pos">+7.1%</td><td>5</td></tr></tbody>
+    </table>
+  
+    <h2>Factor Attribution -- Pearson Correlation with 5-Day Forward Return</h2>
+    <p class="note">Higher (more positive) = the factor predicts actual returns better across all (ticker, run) pairs.</p>
+    
+    <table>
+      <thead><tr><th>factor</th><th>correlation</th><th>n</th></tr></thead>
+      <tbody><tr><td>fundamentals</td><td>+0.078</td><td>1200</td></tr><tr><td>momentum</td><td>-0.025</td><td>1200</td></tr><tr><td>composite</td><td>-0.056</td><td>1200</td></tr><tr><td>analyst</td><td>-0.122</td><td>1200</td></tr></tbody>
+    </table>
+  
+    <h2>Score Trend Leaderboard -- Rising Tickers</h2>
+    <p class="note">Slope = score-points per run. ^^ = strong uptrend, vv = strong downtrend.</p>
+    
+    <table>
+      <thead><tr><th>ticker</th><th>runs</th><th>avg_score</th><th>avg_rank</th><th>slope</th><th>direction</th></tr></thead>
+      <tbody><tr><td>AIXI</td><td>4</td><td>47.5</td><td>3.0</td><td class="pos">+6.00</td><td>^^</td></tr><tr><td>AEHR</td><td>4</td><td>29.7</td><td>47.0</td><td class="pos">+4.98</td><td>^^</td></tr><tr><td>AMC</td><td>4</td><td>17.5</td><td>68.5</td><td class="pos">+4.93</td><td>^^</td></tr><tr><td>AGEN</td><td>4</td><td>43.0</td><td>10.0</td><td class="pos">+4.92</td><td>^^</td></tr><tr><td>AGL</td><td>4</td><td>16.4</td><td>71.2</td><td class="pos">+4.92</td><td>^^</td></tr><tr><td>ABVC</td><td>4</td><td>12.9</td><td>84.0</td><td class="pos">+4.92</td><td>^^</td></tr><tr><td>AFRU</td><td>4</td><td>12.0</td><td>96.5</td><td class="pos">+4.89</td><td>^^</td></tr><tr><td>AIB</td><td>4</td><td>10.8</td><td>110.5</td><td class="pos">+4.85</td><td>^^</td></tr><tr><td>AIDX</td><td>4</td><td>10.8</td><td>111.5</td><td class="pos">+4.85</td><td>^^</td></tr><tr><td>AMZE</td><td>4</td><td>39.0</td><td>20.2</td><td class="pos">+4.80</td><td>^^</td></tr></tbody>
+    </table>
+    <h2>Score Trend Leaderboard -- Falling Tickers</h2>
+    
+    <table>
+      <thead><tr><th>ticker</th><th>runs</th><th>avg_score</th><th>avg_rank</th><th>slope</th><th>direction</th></tr></thead>
+      <tbody><tr><td>INTU</td><td>35</td><td>63.0</td><td>8.9</td><td class="neg">-1.14</td><td>v</td></tr><tr><td>CRM</td><td>35</td><td>52.8</td><td>11.1</td><td class="neg">-0.58</td><td>v</td></tr><tr><td>NFLX</td><td>35</td><td>55.5</td><td>9.2</td><td class="neg">-0.57</td><td>v</td></tr><tr><td>CVX</td><td>35</td><td>41.4</td><td>24.9</td><td class="neg">-0.42</td><td>v</td></tr><tr><td>AMGN</td><td>37</td><td>33.3</td><td>36.2</td><td class="neg">-0.28</td><td>-></td></tr><tr><td>XOM</td><td>36</td><td>37.9</td><td>30.7</td><td class="neg">-0.25</td><td>-></td></tr><tr><td>MCD</td><td>35</td><td>33.0</td><td>37.3</td><td class="neg">-0.23</td><td>-></td></tr><tr><td>ABBV</td><td>37</td><td>35.7</td><td>32.4</td><td class="neg">-0.21</td><td>-></td></tr><tr><td>MSFT</td><td>36</td><td>56.1</td><td>6.6</td><td class="neg">-0.19</td><td>-></td></tr><tr><td>RTX</td><td>35</td><td>36.0</td><td>32.1</td><td class="neg">-0.17</td><td>-></td></tr></tbody>
+    </table>
+  
+    <h2>Ticker Consistency -- Top-10 Appearances</h2>
+    
+    <table>
+      <thead><tr><th>ticker</th><th>top10_appearances</th><th>pct_of_runs</th></tr></thead>
+      <tbody><tr><td>NVDA</td><td>35</td><td>+92.1%</td></tr><tr><td>MSFT</td><td>34</td><td>+89.5%</td></tr><tr><td>AMD</td><td>31</td><td>+81.6%</td></tr><tr><td>ORCL</td><td>27</td><td>+71.1%</td></tr><tr><td>INTU</td><td>24</td><td>+63.2%</td></tr><tr><td>NFLX</td><td>22</td><td>+57.9%</td></tr><tr><td>AVGO</td><td>22</td><td>+57.9%</td></tr><tr><td>CRM</td><td>21</td><td>+55.3%</td></tr><tr><td>SPGI</td><td>20</td><td>+52.6%</td></tr><tr><td>GOOGL</td><td>17</td><td>+44.7%</td></tr><tr><td>MA</td><td>16</td><td>+42.1%</td></tr><tr><td>AMZN</td><td>16</td><td>+42.1%</td></tr><tr><td>META</td><td>12</td><td>+31.6%</td></tr><tr><td>BAC</td><td>11</td><td>+28.9%</td></tr><tr><td>LLY</td><td>9</td><td>+23.7%</td></tr><tr><td>CVX</td><td>7</td><td>+18.4%</td></tr><tr><td>WFC</td><td>5</td><td>+13.2%</td></tr><tr><td>V</td><td>5</td><td>+13.2%</td></tr><tr><td>AIXI</td><td>4</td><td>+10.5%</td></tr><tr><td>TMO</td><td>3</td><td>+7.9%</td></tr></tbody>
+    </table>
+</body>
+</html>

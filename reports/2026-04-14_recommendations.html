@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stock Recommendations — 2026-04-14</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; background: #f5f5f5; }
+    h1 { color: #333; }
+    p.meta { color: #666; font-size: 0.9rem; }
+    table { border-collapse: collapse; width: 100%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); font-size: 0.88rem; }
+    th { background: #2c3e50; color: #fff; padding: 9px 11px; text-align: left; white-space: nowrap; }
+    td { padding: 8px 11px; border-bottom: 1px solid #e0e0e0; white-space: nowrap; }
+    tr:hover td { background: #f0f4f8; }
+    .score-high { color: #27ae60; font-weight: bold; }
+    .score-mid  { color: #e67e22; font-weight: bold; }
+    .score-low  { color: #c0392b; }
+    .rank { font-weight: bold; text-align: center; }
+    .rsi-hot  { color: #c0392b; font-weight: bold; }   /* RSI > 70 overbought */
+    .rsi-cold { color: #27ae60; font-weight: bold; }   /* RSI < 30 oversold   */
+    .vol-high { color: #2980b9; font-weight: bold; }   /* vol ratio > 1.5     */
+    .notes-cell { white-space: normal; max-width: 280px; font-size: 0.82rem; color: #555; }
+    .pe-cell { text-align: right; }
+  </style>
+</head>
+<body>
+  <h1>Stock Recommendations</h1>
+  <p class="meta">Generated: 2026-04-14 &nbsp;|&nbsp; Universe: 50 tickers scored &nbsp;|&nbsp; Showing top 20</p>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Ticker</th>
+        <th>Composite</th>
+        <th>Momentum</th>
+        <th>Analyst</th>
+        <th>Fundamentals</th>
+        <th>Sector</th>
+        <th title="Forward Price-to-Earnings ratio. Lower = cheaper valuation.">Fwd P/E</th>
+        <th title="14-day Relative Strength Index. >70 overbought, <30 oversold.">RSI</th>
+        <th title="10-day avg volume vs 60-day avg. >1.5x = unusual activity.">Vol Ratio</th>
+        <th title="Beta vs S&P 500. >1 = more volatile than market.">Beta</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td class="rank">1</td>
+        <td><strong>AMD</strong></td>
+        <td class="score-high">
+          83.6
+        </td>
+        <td>100.0</td>
+        <td>45.3</td>
+        <td class="score-high">
+          100.0
+        </td>
+        <td>Technology</td>
+        <td class="pe-cell">
+          
+            22.8x
+          
+        </td>
+        <td class="rsi-hot">
+          73.8
+        </td>
+        <td class="">
+          0.90x
+        </td>
+        <td>1.96</td>
+        <td class="notes-cell">+24.8% 1mo; +17.2% analyst upside; EPS +217%; Rev +34%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">2</td>
+        <td><strong>NVDA</strong></td>
+        <td class="score-high">
+          68.7
+        </td>
+        <td>51.9</td>
+        <td>85.4</td>
+        <td class="score-high">
+          74.2
+        </td>
+        <td>Technology</td>
+        <td class="pe-cell">
+          
+            17.0x
+          
+        </td>
+        <td class="">
+          66.4
+        </td>
+        <td class="">
+          0.85x
+        </td>
+        <td>2.33</td>
+        <td class="notes-cell">+3.4% 1mo; +41.7% analyst upside; EPS +96%; Rev +73%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">3</td>
+        <td><strong>AVGO</strong></td>
+        <td class="score-high">
+          68.5
+        </td>
+        <td>88.9</td>
+        <td>66.3</td>
+        <td class="score-mid">
+          43.5
+        </td>
+        <td>Technology</td>
+        <td class="pe-cell">
+          
+            21.2x
+          
+        </td>
+        <td class="rsi-hot">
+          74.5
+        </td>
+        <td class="">
+          0.91x
+        </td>
+        <td>1.25</td>
+        <td class="notes-cell">+13.3% 1mo; +24.5% analyst upside; EPS +32%; Rev +30%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">4</td>
+        <td><strong>ORCL</strong></td>
+        <td class="score-mid">
+          60.4
+        </td>
+        <td>52.1</td>
+        <td>92.3</td>
+        <td class="score-mid">
+          39.4
+        </td>
+        <td>Technology</td>
+        <td class="pe-cell">
+          
+            19.5x
+          
+        </td>
+        <td class="">
+          51.7
+        </td>
+        <td class="">
+          0.85x
+        </td>
+        <td>1.60</td>
+        <td class="notes-cell">-1.9% 1mo; +58.4% analyst upside; EPS +24%; Rev +22%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">5</td>
+        <td><strong>AMZN</strong></td>
+        <td class="score-mid">
+          59.2
+        </td>
+        <td>80.7</td>
+        <td>58.6</td>
+        <td class="score-low">
+          31.2
+        </td>
+        <td>Consumer Cyclical</td>
+        <td class="pe-cell">
+          
+            25.6x
+          
+        </td>
+        <td class="rsi-hot">
+          74.0
+        </td>
+        <td class="">
+          0.88x
+        </td>
+        <td>1.38</td>
+        <td class="notes-cell">+14.5% 1mo; +17.2% analyst upside; EPS +5%; Rev +14%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">6</td>
+        <td><strong>MSFT</strong></td>
+        <td class="score-mid">
+          57.8
+        </td>
+        <td>35.5</td>
+        <td>96.7</td>
+        <td class="score-mid">
+          48.6
+        </td>
+        <td>Technology</td>
+        <td class="pe-cell">
+          
+            20.3x
+          
+        </td>
+        <td class="">
+          51.1
+        </td>
+        <td class="">
+          0.83x
+        </td>
+        <td>1.11</td>
+        <td class="notes-cell">-4.4% 1mo; +52.3% analyst upside; EPS +60%; Rev +17%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">7</td>
+        <td><strong>BAC</strong></td>
+        <td class="score-mid">
+          54.3
+        </td>
+        <td>71.8</td>
+        <td>50.0</td>
+        <td class="score-mid">
+          35.4
+        </td>
+        <td>Financial Services</td>
+        <td class="pe-cell">
+          
+            10.7x
+          
+        </td>
+        <td class="rsi-hot">
+          80.0
+        </td>
+        <td class="">
+          0.80x
+        </td>
+        <td>1.24</td>
+        <td class="notes-cell">+13.2% 1mo; +13.0% analyst upside; EPS +21%; Rev +7%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">8</td>
+        <td><strong>TMO</strong></td>
+        <td class="score-mid">
+          54.0
+        </td>
+        <td>62.3</td>
+        <td>65.9</td>
+        <td class="score-low">
+          31.1
+        </td>
+        <td>Healthcare</td>
+        <td class="pe-cell">
+          
+            19.0x
+          
+        </td>
+        <td class="">
+          68.4
+        </td>
+        <td class="">
+          0.71x
+        </td>
+        <td>0.97</td>
+        <td class="notes-cell">+8.2% 1mo; +27.3% analyst upside; EPS +9%; Rev +7%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">9</td>
+        <td><strong>META</strong></td>
+        <td class="score-mid">
+          53.2
+        </td>
+        <td>49.6</td>
+        <td>75.3</td>
+        <td class="score-mid">
+          35.9
+        </td>
+        <td>Communication Services</td>
+        <td class="pe-cell">
+          
+            17.8x
+          
+        </td>
+        <td class="">
+          57.5
+        </td>
+        <td class="">
+          1.14x
+        </td>
+        <td>1.31</td>
+        <td class="notes-cell">-0.5% 1mo; +34.9% analyst upside; EPS +11%; Rev +24%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">10</td>
+        <td><strong>DHR</strong></td>
+        <td class="score-mid">
+          51.9
+        </td>
+        <td>52.7</td>
+        <td>71.6</td>
+        <td class="score-low">
+          31.2
+        </td>
+        <td>Healthcare</td>
+        <td class="pe-cell">
+          
+            21.5x
+          
+        </td>
+        <td class="">
+          57.9
+        </td>
+        <td class="">
+          0.82x
+        </td>
+        <td>0.99</td>
+        <td class="notes-cell">+5.4% 1mo; +33.4% analyst upside; EPS +12%; Rev +5%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">11</td>
+        <td><strong>GOOGL</strong></td>
+        <td class="score-mid">
+          51.8
+        </td>
+        <td>58.0</td>
+        <td>55.1</td>
+        <td class="score-mid">
+          40.2
+        </td>
+        <td>Communication Services</td>
+        <td class="pe-cell">
+          
+            23.9x
+          
+        </td>
+        <td class="">
+          61.6
+        </td>
+        <td class="">
+          0.82x
+        </td>
+        <td>1.13</td>
+        <td class="notes-cell">+5.9% 1mo; +17.0% analyst upside; EPS +31%; Rev +18%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">12</td>
+        <td><strong>BLK</strong></td>
+        <td class="score-mid">
+          51.3
+        </td>
+        <td>68.2</td>
+        <td>57.0</td>
+        <td class="score-low">
+          23.2
+        </td>
+        <td>Financial Services</td>
+        <td class="pe-cell">
+          
+            17.0x
+          
+        </td>
+        <td class="">
+          64.1
+        </td>
+        <td class="">
+          0.83x
+        </td>
+        <td>1.49</td>
+        <td class="notes-cell">+10.9% 1mo; +19.7% analyst upside; EPS -32%; Rev +23%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">13</td>
+        <td><strong>WFC</strong></td>
+        <td class="score-mid">
+          50.7
+        </td>
+        <td>74.6</td>
+        <td>37.3</td>
+        <td class="score-low">
+          32.4
+        </td>
+        <td>Financial Services</td>
+        <td class="pe-cell">
+          
+            10.9x
+          
+        </td>
+        <td class="rsi-hot">
+          75.0
+        </td>
+        <td class="">
+          0.72x
+        </td>
+        <td>1.06</td>
+        <td class="notes-cell">+15.1% 1mo; +13.9% analyst upside; EPS +13%; Rev +5%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">14</td>
+        <td><strong>MA</strong></td>
+        <td class="score-mid">
+          50.7
+        </td>
+        <td>45.6</td>
+        <td>70.0</td>
+        <td class="score-mid">
+          38.1
+        </td>
+        <td>Financial Services</td>
+        <td class="pe-cell">
+          
+            22.4x
+          
+        </td>
+        <td class="">
+          55.2
+        </td>
+        <td class="">
+          0.91x
+        </td>
+        <td>0.83</td>
+        <td class="notes-cell">+2.4% 1mo; +29.2% analyst upside; EPS +24%; Rev +18%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">15</td>
+        <td><strong>SPGI</strong></td>
+        <td class="score-mid">
+          49.6
+        </td>
+        <td>43.9</td>
+        <td>68.4</td>
+        <td class="score-mid">
+          38.3
+        </td>
+        <td>Financial Services</td>
+        <td class="pe-cell">
+          
+            19.5x
+          
+        </td>
+        <td class="">
+          50.6
+        </td>
+        <td class="">
+          0.62x
+        </td>
+        <td>1.20</td>
+        <td class="notes-cell">+2.5% 1mo; +25.2% analyst upside; EPS +32%; Rev +9%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">16</td>
+        <td><strong>V</strong></td>
+        <td class="score-mid">
+          48.3
+        </td>
+        <td>42.9</td>
+        <td>68.4</td>
+        <td class="score-mid">
+          35.3
+        </td>
+        <td>Financial Services</td>
+        <td class="pe-cell">
+          
+            21.3x
+          
+        </td>
+        <td class="">
+          55.6
+        </td>
+        <td class="">
+          0.84x
+        </td>
+        <td>0.80</td>
+        <td class="notes-cell">+0.9% 1mo; +27.6% analyst upside; EPS +17%; Rev +15%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">17</td>
+        <td><strong>NFLX</strong></td>
+        <td class="score-mid">
+          47.6
+        </td>
+        <td>60.7</td>
+        <td>37.4</td>
+        <td class="score-mid">
+          40.5
+        </td>
+        <td>Communication Services</td>
+        <td class="pe-cell">
+          
+            26.6x
+          
+        </td>
+        <td class="rsi-hot">
+          78.7
+        </td>
+        <td class="">
+          0.69x
+        </td>
+        <td>1.67</td>
+        <td class="notes-cell">+9.4% 1mo; +10.5% analyst upside; EPS +33%; Rev +18%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">18</td>
+        <td><strong>LLY</strong></td>
+        <td class="score-mid">
+          45.0
+        </td>
+        <td>27.6</td>
+        <td>60.5</td>
+        <td class="score-mid">
+          52.8
+        </td>
+        <td>Healthcare</td>
+        <td class="pe-cell">
+          
+            22.1x
+          
+        </td>
+        <td class="">
+          54.4
+        </td>
+        <td class="">
+          0.90x
+        </td>
+        <td>0.50</td>
+        <td class="notes-cell">-4.9% 1mo; +30.1% analyst upside; EPS +51%; Rev +43%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">19</td>
+        <td><strong>UNH</strong></td>
+        <td class="score-mid">
+          44.9
+        </td>
+        <td>77.8</td>
+        <td>46.0</td>
+        <td class="score-low">
+          0.0
+        </td>
+        <td>Healthcare</td>
+        <td class="pe-cell">
+          
+            15.5x
+          
+        </td>
+        <td class="rsi-hot">
+          77.6
+        </td>
+        <td class="">
+          0.85x
+        </td>
+        <td>0.41</td>
+        <td class="notes-cell">+13.0% 1mo; +15.3% analyst upside; EPS -100%; Rev +12%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">20</td>
+        <td><strong>INTU</strong></td>
+        <td class="score-mid">
+          43.7
+        </td>
+        <td>0.0</td>
+        <td>100.0</td>
+        <td class="score-mid">
+          45.8
+        </td>
+        <td>Technology</td>
+        <td class="pe-cell">
+          
+            14.0x
+          
+        </td>
+        <td class="rsi-cold">
+          24.1
+        </td>
+        <td class="">
+          0.91x
+        </td>
+        <td>1.21</td>
+        <td class="notes-cell">-14.8% 1mo; +63.4% analyst upside; EPS +48%; Rev +17%</td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <p style="margin-top:1.5rem; font-size:0.78rem; color:#999;">
+    <strong>Score guide:</strong>
+    Composite / factor scores are min-max normalized to [0–100] across the scored universe.
+    &nbsp;|&nbsp; <strong>RSI:</strong> &gt;70 = overbought (red), &lt;30 = oversold (green).
+    &nbsp;|&nbsp; <strong>Vol Ratio:</strong> 10-day avg vs 60-day avg volume — highlighted blue if &gt;1.5×.
+    &nbsp;|&nbsp; <strong>Beta:</strong> sensitivity to S&P 500 moves.
+    &nbsp;|&nbsp; <strong>Fwd P/E:</strong> forward price-to-earnings ratio.
+  </p>
+</body>
+</html>
