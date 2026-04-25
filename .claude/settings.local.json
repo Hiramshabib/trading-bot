@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wsl bullpen:*)",
+      "Bash(wsl which:*)",
+      "Bash(wsl bash:*)",
+      "Bash(wsl -e bash -lc 'which bullpen 2>&1 || echo '\\\\''not found'\\\\''; echo PATH=__TRACKED_VAR__')",
+      "Bash(wsl --list --running)",
+      "Bash(wsl -d Ubuntu -e sh -c \"which bullpen 2>&1 || echo 'not found'\")",
+      "Bash(pip show:*)",
+      "Bash(pip index:*)",
+      "Bash(python -c ':*)",
+      "Bash(sqlite3:*)"
+    ]
+  }
+}

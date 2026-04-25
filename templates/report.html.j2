@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stock Recommendations — {{ run_date }}</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; background: #f5f5f5; }
+    h1 { color: #333; }
+    h2 { color: #444; font-size: 1.1rem; margin: 2rem 0 0.5rem; }
+    p.meta { color: #666; font-size: 0.9rem; }
+    table { border-collapse: collapse; width: 100%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); font-size: 0.88rem; }
+    th { background: #2c3e50; color: #fff; padding: 9px 11px; text-align: left; white-space: nowrap; }
+    td { padding: 8px 11px; border-bottom: 1px solid #e0e0e0; white-space: nowrap; }
+    tr:hover td { background: #f0f4f8; }
+    .score-high { color: #27ae60; font-weight: bold; }
+    .score-mid  { color: #e67e22; font-weight: bold; }
+    .score-low  { color: #c0392b; }
+    .rank { font-weight: bold; text-align: center; }
+    .rsi-hot  { color: #c0392b; font-weight: bold; }
+    .rsi-cold { color: #27ae60; font-weight: bold; }
+    .vol-high { color: #2980b9; font-weight: bold; }
+    .notes-cell { white-space: normal; max-width: 280px; font-size: 0.82rem; color: #555; }
+    .pe-cell { text-align: right; }
+
+    /* --- Alert section --- */
+    .alert-section { margin-top: 2.5rem; }
+    .alert-table th { background: #7f1d1d; }
+    .alert-table tr:hover td { background: #fef2f2; }
+    .sev-high   { background: #fee2e2; color: #991b1b; font-weight: bold; padding: 2px 7px; border-radius: 4px; font-size: 0.78rem; }
+    .sev-medium { background: #fef3c7; color: #92400e; font-weight: bold; padding: 2px 7px; border-radius: 4px; font-size: 0.78rem; }
+    .sev-low    { background: #e0f2fe; color: #075985; font-weight: bold; padding: 2px 7px; border-radius: 4px; font-size: 0.78rem; }
+    .flag-tag   { display: inline-block; background: #fee2e2; color: #7f1d1d; border-radius: 3px; padding: 1px 5px; font-size: 0.75rem; margin: 1px; }
+    .over-table th { background: #78350f; }
+    .over-table tr:hover td { background: #fffbeb; }
+    .watch-tag  { display: inline-block; background: #fef3c7; color: #78350f; border-radius: 3px; padding: 1px 5px; font-size: 0.75rem; }
+    .neg { color: #dc2626; font-weight: bold; }
+    .pos { color: #16a34a; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Stock Recommendations</h1>
+  <p class="meta">Generated: {{ run_date }} &nbsp;|&nbsp; Universe: {{ total }} tickers scored &nbsp;|&nbsp; Showing top {{ rows | length }}</p>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Ticker</th>
+        <th>Composite</th>
+        <th>Momentum</th>
+        <th>Analyst</th>
+        <th>Fundamentals</th>
+        <th>Sector</th>
+        <th title="Forward Price-to-Earnings ratio. Lower = cheaper valuation.">Fwd P/E</th>
+        <th title="14-day Relative Strength Index. >70 overbought, <30 oversold.">RSI</th>
+        <th title="10-day avg volume vs 60-day avg. >1.5x = unusual activity.">Vol Ratio</th>
+        <th title="Beta vs S&P 500. >1 = more volatile than market.">Beta</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr>
+        <td class="rank">{{ row.rank }}</td>
+        <td><strong>{{ row.ticker }}</strong></td>
+        <td class="{{ 'score-high' if row.composite_score >= 66 else ('score-mid' if row.composite_score >= 33 else 'score-low') }}">
+          {{ "%.1f"|format(row.composite_score) }}
+        </td>
+        <td>{{ "%.1f"|format(row.momentum_score) }}</td>
+        <td>{{ "%.1f"|format(row.analyst_score) }}</td>
+        <td class="{{ 'score-high' if row.fundamentals_score >= 66 else ('score-mid' if row.fundamentals_score >= 33 else 'score-low') }}">
+          {{ "%.1f"|format(row.fundamentals_score) }}
+        </td>
+        <td>{{ row.sector }}</td>
+        <td class="pe-cell">
+          {% if row.forward_pe is not none and row.forward_pe %}
+            {{ "%.1f"|format(row.forward_pe) }}x
+          {% else %}
+            —
+          {% endif %}
+        </td>
+        <td class="{{ 'rsi-hot' if row.rsi_14 > 70 else ('rsi-cold' if row.rsi_14 < 30 else '') }}">
+          {{ "%.1f"|format(row.rsi_14) }}
+        </td>
+        <td class="{{ 'vol-high' if row.vol_ratio > 1.5 else '' }}">
+          {{ "%.2f"|format(row.vol_ratio) }}x
+        </td>
+        <td>{{ "%.2f"|format(row.beta) }}</td>
+        <td class="notes-cell">{{ row.notes }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <p style="margin-top:1.5rem; font-size:0.78rem; color:#999;">
+    <strong>Score guide:</strong>
+    Composite / factor scores are min-max normalized to [0–100] across the scored universe.
+    &nbsp;|&nbsp; <strong>RSI:</strong> &gt;70 = overbought (red), &lt;30 = oversold (green).
+    &nbsp;|&nbsp; <strong>Vol Ratio:</strong> 10-day avg vs 60-day avg volume — highlighted blue if &gt;1.5×.
+    &nbsp;|&nbsp; <strong>Beta:</strong> sensitivity to S&P 500 moves.
+    &nbsp;|&nbsp; <strong>Fwd P/E:</strong> forward price-to-earnings ratio.
+  </p>
+
+  {% if det_alerts %}
+  <div class="alert-section">
+    <h2>Deterioration Alerts</h2>
+    <p class="meta" style="margin-bottom:0.5rem">Tickers showing price decline, model downgrade, or rank collapse — consider avoiding or exiting.</p>
+    <table class="alert-table">
+      <thead>
+        <tr>
+          <th>Severity</th>
+          <th>Ticker</th>
+          <th>Rank (now)</th>
+          <th>Prev Avg Rank</th>
+          <th>Rank Change</th>
+          <th>1mo Return</th>
+          <th>RSI</th>
+          <th>Score Slope</th>
+          <th>Signals</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in det_alerts %}
+        <tr>
+          <td>
+            <span class="{{ 'sev-high' if a.severity == 'HIGH' else ('sev-medium' if a.severity == 'MEDIUM' else 'sev-low') }}">
+              {{ a.severity }}
+            </span>
+          </td>
+          <td><strong>{{ a.ticker }}</strong></td>
+          <td>#{{ a.current_rank }}</td>
+          <td>{% if a.prev_avg_rank %}#{{ a.prev_avg_rank }}{% else %}—{% endif %}</td>
+          <td>{% if a.rank_change %}<span class="{{ 'neg' if a.rank_change < 0 else 'pos' }}">{{ "%+.0f"|format(a.rank_change) }}</span>{% else %}—{% endif %}</td>
+          <td class="{{ 'neg' if a.pct_1mo < 0 else 'pos' }}">{{ "%+.1f"|format(a.pct_1mo) }}%</td>
+          <td class="{{ 'rsi-cold' if a.rsi_14 < 35 else '' }}">{{ "%.1f"|format(a.rsi_14) }}</td>
+          <td>{% if a.score_slope %}{{ "%+.2f"|format(a.score_slope) }}{% else %}—{% endif %}</td>
+          <td>{% for flag in a.flags.split(', ') %}<span class="flag-tag">{{ flag }}</span>{% endfor %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+
+  {% if over_alerts %}
+  <div class="alert-section">
+    <h2>Overextension Warnings</h2>
+    <p class="meta" style="margin-bottom:0.5rem">Top picks with RSI &gt; 75 — strong momentum but may be near a short-term top.</p>
+    <table class="over-table">
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Rank</th>
+          <th>RSI</th>
+          <th>1mo Return</th>
+          <th>Composite</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in over_alerts %}
+        <tr>
+          <td><strong>{{ a.ticker }}</strong></td>
+          <td>#{{ a.current_rank }}</td>
+          <td class="rsi-hot">{{ "%.1f"|format(a.rsi_14) }}</td>
+          <td class="{{ 'neg' if a.pct_1mo < 0 else 'pos' }}">{{ "%+.1f"|format(a.pct_1mo) }}%</td>
+          <td>{{ "%.1f"|format(a.composite) }}</td>
+          <td><span class="watch-tag">OVERBOUGHT</span> {{ a.note }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+
+</body>
+</html>
