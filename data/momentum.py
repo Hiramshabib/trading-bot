@@ -10,7 +10,6 @@ import pandas as pd
 import yfinance as yf
 
 import config
-from storage.database import save_data_cache, load_data_cache
 
 
 def _rsi(prices: pd.Series, period: int = 14) -> float:
@@ -106,14 +105,7 @@ def fetch_momentum_scores(tickers: list[str]) -> pd.DataFrame:
             "vol_ratio":    vol_ratio,
         })
 
-    df = pd.DataFrame(rows)
-    if df.empty:
-        cached = load_data_cache("momentum")
-        if not cached.empty:
-            return cached[cached["ticker"].isin(tickers)].reset_index(drop=True)
-        return df
-    save_data_cache("momentum", df)
-    return df
+    return pd.DataFrame(rows)
 
 
 def fetch_finviz_gainers() -> list[str]:

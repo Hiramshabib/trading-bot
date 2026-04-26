@@ -173,20 +173,8 @@ _PALETTE = [
 ]
 
 
-def _sanitize(obj):
-    """Recursively replace NaN/Inf floats with None so JSON serialisation succeeds."""
-    if isinstance(obj, float):
-        import math
-        return None if (math.isnan(obj) or math.isinf(obj)) else obj
-    if isinstance(obj, dict):
-        return {k: _sanitize(v) for k, v in obj.items()}
-    if isinstance(obj, (list, tuple)):
-        return [_sanitize(v) for v in obj]
-    return obj
-
-
 def _safe_json(obj) -> str:
-    return json.dumps(_sanitize(obj), allow_nan=False)
+    return json.dumps(obj, allow_nan=False)
 
 
 def _month_label(month_str: str, current_month: str) -> str:
