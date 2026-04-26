@@ -52,7 +52,7 @@ Keep it under 200 words. Do not recommend buying or selling specific stocks.
     try:
         client = anthropic.Anthropic(api_key=api_key)
         response = client.messages.create(
-            model="claude-opus-4-7",
+            model="claude-haiku-4-5",
             max_tokens=512,
             messages=[{"role": "user", "content": prompt}],
         )
