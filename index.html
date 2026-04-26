@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trading Bot Dashboard</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { display: flex; height: 100vh; font-family: Arial, sans-serif; background: #0d1117; }
+
+    #sidebar {
+      width: 210px; min-width: 210px;
+      background: #161b22; color: #c9d1d9;
+      display: flex; flex-direction: column; overflow: hidden;
+      border-right: 1px solid #30363d;
+    }
+    #sidebar-header {
+      padding: 1rem 0.9rem 0.75rem;
+      border-bottom: 1px solid #30363d;
+    }
+    #sidebar-header h1 { font-size: 0.95rem; color: #58a6ff; font-weight: 600; }
+    #sidebar-header p  { font-size: 0.68rem; color: #8b949e; margin-top: 0.2rem; }
+    #sidebar-header .updated { font-size: 0.65rem; color: #484f58; margin-top: 0.4rem; }
+
+    #report-list { list-style: none; overflow-y: auto; flex: 1; }
+    #report-list li {
+      display: flex; align-items: center;
+      border-bottom: 1px solid #21262d;
+    }
+    #report-list li a {
+      display: block; padding: 0.6rem 0.9rem; color: #8b949e;
+      text-decoration: none; font-size: 0.82rem; flex: 1;
+      transition: background 0.1s;
+    }
+    #report-list li a:hover      { background: #1f2937; color: #e6edf3; }
+    #report-list li.active a     { background: #1f2937; color: #58a6ff; font-weight: 600; }
+    .chart-link {
+      padding: 0.5rem 0.5rem 0.5rem 0.2rem;
+      color: #484f58; text-decoration: none; font-size: 0.75rem;
+    }
+    .chart-link:hover { color: #58a6ff; }
+
+    #main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    iframe { flex: 1; border: none; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <div id="sidebar-header">
+      <h1>Trading Bot</h1>
+      <p>Daily Stock Recommendations</p>
+      <p class="updated">Updated: 2026-04-26 10:01 UTC</p>
+    </div>
+    <ul id="report-list">
+      <li class="active"><a href="reports/2026-04-26_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 26, 2026</a><a href="reports/2026-04-26_charts.html" target="report-frame" class="chart-link" title="Charts">&#9642;</a></li>
+      <li><a href="reports/2026-04-25_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 25, 2026</a><a href="reports/2026-04-25_charts.html" target="report-frame" class="chart-link" title="Charts">&#9642;</a></li>
+      <li><a href="reports/2026-04-24_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 24, 2026</a></li>
+      <li><a href="reports/2026-04-23_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 23, 2026</a></li>
+      <li><a href="reports/2026-04-22_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 22, 2026</a><a href="reports/2026-04-22_charts.html" target="report-frame" class="chart-link" title="Charts">&#9642;</a></li>
+      <li><a href="reports/2026-04-21_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 21, 2026</a><a href="reports/2026-04-21_charts.html" target="report-frame" class="chart-link" title="Charts">&#9642;</a></li>
+      <li><a href="reports/2026-04-20_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 20, 2026</a></li>
+      <li><a href="reports/2026-04-19_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 19, 2026</a></li>
+      <li><a href="reports/2026-04-18_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 18, 2026</a></li>
+      <li><a href="reports/2026-04-17_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 17, 2026</a></li>
+      <li><a href="reports/2026-04-16_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 16, 2026</a></li>
+      <li><a href="reports/2026-04-15_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 15, 2026</a></li>
+      <li><a href="reports/2026-04-14_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 14, 2026</a></li>
+      <li><a href="reports/2026-04-13_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 13, 2026</a></li>
+      <li><a href="reports/2026-04-12_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 12, 2026</a></li>
+      <li><a href="reports/2026-04-10_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 10, 2026</a></li>
+      <li><a href="reports/2026-04-09_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 09, 2026</a></li>
+      <li><a href="reports/2026-04-08_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 08, 2026</a></li>
+      <li><a href="reports/2026-04-07_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 07, 2026</a></li>
+      <li><a href="reports/2026-04-06_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 06, 2026</a></li>
+      <li><a href="reports/2026-04-02_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 02, 2026</a></li>
+      <li><a href="reports/2026-04-01_recommendations.html" target="report-frame" onclick="setActive(this)">Apr 01, 2026</a></li>
+      <li><a href="reports/2026-03-31_recommendations.html" target="report-frame" onclick="setActive(this)">Mar 31, 2026</a></li>
+      <li><a href="reports/2026-03-30_recommendations.html" target="report-frame" onclick="setActive(this)">Mar 30, 2026</a></li>
+      <li><a href="reports/2026-03-27_recommendations.html" target="report-frame" onclick="setActive(this)">Mar 27, 2026</a></li>
+    </ul>
+  </div>
+  <div id="main">
+    <iframe name="report-frame" id="report-frame" src="reports/2026-04-26_recommendations.html?v=202604261001"></iframe>
+  </div>
+  <script>
+    function setActive(link) {
+      document.querySelectorAll('#report-list li').forEach(li => li.classList.remove('active'));
+      link.closest('li').classList.add('active');
+    }
+  </script>
+</body>
+</html>
