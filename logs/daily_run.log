@@ -1,0 +1,102 @@
+
+[1/5] Building ticker universe…
+  Universe: 50 tickers (1 Finviz extras)
+
+[2/5] Fetching momentum data…
+  Downloading price history for 50 tickers…
+
+[3/5] Fetching analyst data…
+  Analyst data 1/50: AAPL  Analyst data 2/50: MSFT  Analyst data 3/50: NVDA  Analyst data 4/50: AMZN  Analyst data 5/50: META  Analyst data 6/50: GOOGL  Analyst data 7/50: TSLA  Analyst data 8/50: BRK-B  Analyst data 9/50: JPM  Analyst data 10/50: UNH  Analyst data 11/50: XOM  Analyst data 12/50: V  Analyst data 13/50: LLY  Analyst data 14/50: AVGO  Analyst data 15/50: JNJ  Analyst data 16/50: PG  Analyst data 17/50: MA  Analyst data 18/50: HD  Analyst data 19/50: MRK  Analyst data 20/50: COST  Analyst data 21/50: ABBV  Analyst data 22/50: CVX  Analyst data 23/50: WMT  Analyst data 24/50: BAC  Analyst data 25/50: KO  Analyst data 26/50: NFLX  Analyst data 27/50: AMD  Analyst data 28/50: PEP  Analyst data 29/50: TMO  Analyst data 30/50: ORCL  Analyst data 31/50: CRM  Analyst data 32/50: ACN  Analyst data 33/50: MCD  Analyst data 34/50: ABT  Analyst data 35/50: DHR  Analyst data 36/50: CSCO  Analyst data 37/50: LIN  Analyst data 38/50: WFC  Analyst data 39/50: TXN  Analyst data 40/50: PM  Analyst data 41/50: NEE  Analyst data 42/50: INTU  Analyst data 43/50: RTX  Analyst data 44/50: UPS  Analyst data 45/50: AMGN  Analyst data 46/50: SPGI  Analyst data 47/50: ISRG  Analyst data 48/50: GS  Analyst data 49/50: CAT  Analyst data 50/50: BLK
+
+[4/5] Fetching fundamentals data…
+  Fundamentals 1/50: AAPL  Fundamentals 2/50: MSFT  Fundamentals 3/50: NVDA  Fundamentals 4/50: AMZN  Fundamentals 5/50: META  Fundamentals 6/50: GOOGL  Fundamentals 7/50: TSLA  Fundamentals 8/50: BRK-B  Fundamentals 9/50: JPM  Fundamentals 10/50: UNH  Fundamentals 11/50: XOM  Fundamentals 12/50: V  Fundamentals 13/50: LLY  Fundamentals 14/50: AVGO  Fundamentals 15/50: JNJ  Fundamentals 16/50: PG  Fundamentals 17/50: MA  Fundamentals 18/50: HD  Fundamentals 19/50: MRK  Fundamentals 20/50: COST  Fundamentals 21/50: ABBV  Fundamentals 22/50: CVX  Fundamentals 23/50: WMT  Fundamentals 24/50: BAC  Fundamentals 25/50: KO  Fundamentals 26/50: NFLX  Fundamentals 27/50: AMD  Fundamentals 28/50: PEP  Fundamentals 29/50: TMO  Fundamentals 30/50: ORCL  Fundamentals 31/50: CRM  Fundamentals 32/50: ACN  Fundamentals 33/50: MCD  Fundamentals 34/50: ABT  Fundamentals 35/50: DHR  Fundamentals 36/50: CSCO  Fundamentals 37/50: LIN  Fundamentals 38/50: WFC  Fundamentals 39/50: TXN  Fundamentals 40/50: PM  Fundamentals 41/50: NEE  Fundamentals 42/50: INTU  Fundamentals 43/50: RTX  Fundamentals 44/50: UPS  Fundamentals 45/50: AMGN  Fundamentals 46/50: SPGI  Fundamentals 47/50: ISRG  Fundamentals 48/50: GS  Fundamentals 49/50: CAT  Fundamentals 50/50: BLK
+
+[5/5] Scoring and ranking…
+  Score trend signal active (enough historical runs found)
+
+====================================================================================================
+  TOP 20 STOCK RECOMMENDATIONS
+====================================================================================================
+  #  Ticker      Composite    Momentum    Analyst    Fundamentals  Sector                    RSI  Vol Ratio    Notes
+---  --------  -----------  ----------  ---------  --------------  ----------------------  -----  -----------  ------------------------------------------------------
+  1  AMD              81.9       100         16.3           100    Technology               97.4  1.10x        +57.9% 1mo; -15.0% analyst upside; EPS +217%; Rev +34%
+  2  NVDA             58.8        40         82.9            70.3  Technology               86.7  0.82x        +16.6% 1mo; +29.0% analyst upside; EPS +96%; Rev +73%
+  3  NEE              54.6        25.6       29.4            72.5  Utilities                58.5  0.97x        +4.5% 1mo; +2.1% analyst upside; EPS +160%; Rev +7%
+  4  TXN              45.4        73.2        6.8            31.2  Technology               91.1  1.22x        +40.8% 1mo; -1.6% analyst upside; EPS +31%; Rev +19%
+  5  MSFT             44.4        35.2       90.6            40.7  Technology               75    0.96x        +14.4% 1mo; +35.8% analyst upside; EPS +60%; Rev +17%
+  6  AVGO             43.8        55.5       62.6            34.8  Technology               92.5  0.84x        +32.6% 1mo; +12.5% analyst upside; EPS +32%; Rev +30%
+  7  UNH              40.9        57.1       49.3            16.2  Healthcare               93.4  1.05x        +31.2% 1mo; +8.8% analyst upside; EPS +1%; Rev +2%
+  8  NFLX             40.4        16         60.4            49.7  Communication Services   37.4  1.11x        +0.2% 1mo; +23.7% analyst upside; EPS +86%; Rev +16%
+  9  LLY              38.7        11.1       78.5            45.7  Healthcare               38.2  0.95x        -3.5% 1mo; +36.9% analyst upside; EPS +51%; Rev +43%
+ 10  INTU             38.4        13.7      100              37.5  Technology               44.1  0.73x        -7.0% 1mo; +50.0% analyst upside; EPS +48%; Rev +17%
+ 11  GOOGL            37.2        39.2       56              31.1  Communication Services   82.3  0.69x        +18.4% 1mo; +9.6% analyst upside; EPS +31%; Rev +18%
+ 12  BLK              36.8        25         62.6            39.3  Financial Services       70.9  0.93x        +6.5% 1mo; +20.0% analyst upside; EPS +46%; Rev +27%
+ 13  ORCL             36.5        37.5       82.4            30.1  Technology               68    1.35x        +19.1% 1mo; +40.4% analyst upside; EPS +24%; Rev +22%
+ 14  AMZN             35.4        49.3       56              20.7  Consumer Cyclical        94.6  0.89x        +24.7% 1mo; +7.5% analyst upside; EPS +5%; Rev +14%
+ 15  SPGI             34.7        25.2       75.7            28.9  Financial Services       51.5  0.64x        +6.9% 1mo; +22.3% analyst upside; EPS +32%; Rev +9%
+ 16  META             34.6        32.8       76.8            26.1  Communication Services   79.6  0.79x        +13.5% 1mo; +26.7% analyst upside; EPS +11%; Rev +24%
+ 17  AMGN             33.6        14          6.7            56.8  Healthcare               51.9  0.84x        -2.7% 1mo; +2.4% analyst upside; EPS +112%; Rev +9%
+ 18  CRM              33.2        17         93.8            25.7  Technology               45.3  1.00x        -1.8% 1mo; +50.9% analyst upside; EPS +18%; Rev +12%
+ 19  COST             32.2        23.5       29.7            36.7  Consumer Defensive       47.2  0.93x        +3.7% 1mo; +6.0% analyst upside; EPS +46%; Rev +22%
+ 20  MA               32.2        17.7       81.4            28.7  Financial Services       52.7  0.80x        +0.5% 1mo; +29.5% analyst upside; EPS +24%; Rev +18%
+====================================================================================================
+
+
+[Downside alerts]
+====================================================================================================
+  DOWNSIDE ALERTS
+====================================================================================================
+  Deterioration signals:
+
+  [HIGH]  DHR     rank #26  (was avg #28.4, dropped 2)  1mo -5.1%  RSI 34.1  slope -1.44  |  PRICE DROP, OVERSOLD RSI, MODEL DOWNGRADE
+  [HIGH]  ACN     rank #41  (was avg #33.1, dropped 8)  1mo -6.5%  RSI 33.8  slope -1.98  |  PRICE DROP, OVERSOLD RSI, MODEL DOWNGRADE
+  [HIGH]  MRK     rank #47  (was avg #44.1, dropped 3)  1mo -6.3%  RSI 34.1  slope -1.18  |  PRICE DROP, OVERSOLD RSI, MODEL DOWNGRADE
+  [HIGH]  XOM     rank #48  (was avg #48.5, dropped 0)  1mo -8.8%  RSI 25.8  slope -0.59  |  PRICE DROP, OVERSOLD RSI, MODEL DOWNGRADE
+  [HIGH]  CVX     rank #49  (was avg #48.5, dropped 0)  1mo -9.7%  RSI 33.2  slope -0.63  |  PRICE DROP, OVERSOLD RSI, MODEL DOWNGRADE
+  [HIGH]  JNJ     rank #50  (was avg #50.0, dropped 0)  1mo -5.2%  RSI 29.4  slope -1.40  |  PRICE DROP, OVERSOLD RSI, MODEL DOWNGRADE
+  [MED]   INTU    rank #10  (was avg #10.9, dropped 1)  1mo -7.0%  RSI 44.1  slope -0.69  |  PRICE DROP, MODEL DOWNGRADE
+  [MED]   RTX     rank #35  (was avg #39.6, dropped 5)  1mo -10.6%  RSI 19.2  slope -0.50  |  PRICE DROP, OVERSOLD RSI
+  [MED]   ABT     rank #45  (was avg #46.5, dropped 2)  1mo -12.5%  RSI 26.0  slope +0.22  |  PRICE DROP, OVERSOLD RSIGenerated index.html with 25 report(s).
+[master 37fd44a] Daily run 2026-04-26
+ 5 files changed, 269 insertions(+), 221 deletions(-)
+To github.com:Hiramshabib/trading-bot.git
+   d597631..37fd44a  master -> master
+
+  [LOW]   AMD     rank #1   (was avg #1.0, dropped 0)  1mo +57.9%  RSI 97.4  slope -1.03  |  MODEL DOWNGRADE
+  [LOW]   NVDA    rank #2   (was avg #2.0, dropped 0)  1mo +16.6%  RSI 86.7  slope -0.87  |  MODEL DOWNGRADE
+  [LOW]   MSFT    rank #5   (was avg #4.9, dropped 0)  1mo +14.4%  RSI 75.0  slope -1.21  |  MODEL DOWNGRADE
+  [LOW]   AVGO    rank #6   (was avg #4.5, dropped 2)  1mo +32.6%  RSI 92.5  slope -1.57  |  MODEL DOWNGRADE
+  [LOW]   LLY     rank #9   (was avg #8.0, dropped 1)  1mo -3.5%  RSI 38.2  slope -0.54  |  MODEL DOWNGRADE
+  [LOW]   GOOGL   rank #11  (was avg #11.5, dropped 0)  1mo +18.4%  RSI 82.3  slope -0.96  |  MODEL DOWNGRADE
+  [LOW]   BLK     rank #12  (was avg #8.2, dropped 4)  1mo +6.5%  RSI 70.9  slope -1.23  |  MODEL DOWNGRADE
+  [LOW]   ORCL    rank #13  (was avg #6.2, dropped 7)  1mo +19.1%  RSI 68.0  slope -2.85  |  MODEL DOWNGRADE
+  [LOW]   AMZN    rank #14  (was avg #15.8, dropped 2)  1mo +24.7%  RSI 94.6  slope -1.13  |  MODEL DOWNGRADE
+  [LOW]   SPGI    rank #15  (was avg #16.5, dropped 2)  1mo +6.9%  RSI 51.5  slope -0.81  |  MODEL DOWNGRADE
+  [LOW]   META    rank #16  (was avg #12.4, dropped 4)  1mo +13.5%  RSI 79.6  slope -1.57  |  MODEL DOWNGRADE
+  [LOW]   AMGN    rank #17  (was avg #11.1, dropped 6)  1mo -2.7%  RSI 51.9  slope -1.26  |  MODEL DOWNGRADE
+  [LOW]   CRM     rank #18  (was avg #20.2, dropped 2)  1mo -1.8%  RSI 45.3  slope -0.76  |  MODEL DOWNGRADE
+  [LOW]   MA      rank #20  (was avg #18.2, dropped 2)  1mo +0.5%  RSI 52.7  slope -1.28  |  MODEL DOWNGRADE
+  [LOW]   BAC     rank #21  (was avg #16.1, dropped 5)  1mo +6.8%  RSI 62.8  slope -1.56  |  MODEL DOWNGRADE
+  [LOW]   V       rank #22  (was avg #21.1, dropped 1)  1mo +1.5%  RSI 58.1  slope -1.14  |  MODEL DOWNGRADE
+  [LOW]   ISRG    rank #23  (was avg #26.0, dropped 3)  1mo +2.6%  RSI 62.5  slope -0.77  |  MODEL DOWNGRADE
+  [LOW]   CSCO    rank #24  (was avg #18.2, dropped 6)  1mo +9.4%  RSI 79.7  slope -1.03  |  MODEL DOWNGRADE
+  [LOW]   AAPL    rank #25  (was avg #21.2, dropped 4)  1mo +7.3%  RSI 62.0  slope -1.11  |  MODEL DOWNGRADE
+
+  Overextension warnings (top picks with RSI > 75):
+
+  [WATCH]  AMD     rank #1    RSI 97.4  1mo +57.9%  composite 81.9  |  RSI overbought - may be near a short-term top
+  [WATCH]  NVDA    rank #2    RSI 86.7  1mo +16.6%  composite 58.8  |  RSI overbought - may be near a short-term top
+  [WATCH]  TXN     rank #4    RSI 91.1  1mo +40.8%  composite 45.4  |  RSI overbought - may be near a short-term top
+  [WATCH]  AVGO    rank #6    RSI 92.5  1mo +32.6%  composite 43.8  |  RSI overbought - may be near a short-term top
+  [WATCH]  UNH     rank #7    RSI 93.4  1mo +31.2%  composite 40.9  |  RSI overbought - may be near a short-term top
+  [WATCH]  GOOGL   rank #11   RSI 82.3  1mo +18.4%  composite 37.2  |  RSI overbought - may be near a short-term top
+  [WATCH]  AMZN    rank #14   RSI 94.6  1mo +24.7%  composite 35.4  |  RSI overbought - may be near a short-term top
+
+====================================================================================================
+
+CSV saved:  reports\2026-04-26_recommendations.csv
+HTML saved: reports\2026-04-26_recommendations.html
+Run #52 saved to trading_bot.db
+Charts saved: reports\2026-04-26_charts.html
+
+Results committed and pushed for 2026-04-26.
