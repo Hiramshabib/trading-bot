@@ -69,6 +69,7 @@ def build_html(entries):
 
     sidebar = "\n      ".join(items)
     updated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    cache_bust = datetime.now(timezone.utc).strftime("%Y%m%d%H%M")
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -128,7 +129,7 @@ def build_html(entries):
     </ul>
   </div>
   <div id="main">
-    <iframe name="report-frame" id="report-frame" src="{latest['rec']}"></iframe>
+    <iframe name="report-frame" id="report-frame" src="{latest['rec']}?v={cache_bust}"></iframe>
   </div>
   <script>
     function setActive(link) {{
