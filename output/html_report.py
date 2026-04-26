@@ -5,6 +5,7 @@ import pandas as pd
 from jinja2 import Environment, FileSystemLoader
 
 import config
+from output.ai_summary import generate_ai_summary
 
 
 def export_html(
@@ -26,12 +27,16 @@ def export_html(
     det_alerts  = det_df.to_dict(orient="records")  if det_df  is not None and not det_df.empty  else []
     over_alerts = over_df.to_dict(orient="records") if over_df is not None and not over_df.empty else []
 
+    print("  Generating AI summary…")
+    ai_summary = generate_ai_summary(df, det_df, over_df)
+
     html = template.render(
         run_date=str(run_date),
         total=len(df),
         rows=rows,
         det_alerts=det_alerts,
         over_alerts=over_alerts,
+        ai_summary=ai_summary,
     )
 
     path = os.path.join(config.REPORTS_DIR, f"{run_date}_recommendations.html")

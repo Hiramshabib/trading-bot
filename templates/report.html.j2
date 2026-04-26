@@ -35,11 +35,22 @@
     .watch-tag  { display: inline-block; background: #fef3c7; color: #78350f; border-radius: 3px; padding: 1px 5px; font-size: 0.75rem; }
     .neg { color: #dc2626; font-weight: bold; }
     .pos { color: #16a34a; font-weight: bold; }
+    .ai-summary { margin: 1.5rem 0; background: #fff; border-left: 4px solid #2c3e50; box-shadow: 0 1px 3px rgba(0,0,0,0.1); padding: 1rem 1.25rem; border-radius: 0 4px 4px 0; }
+    .ai-summary-header { font-size: 0.82rem; font-weight: 600; color: #2c3e50; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    .ai-summary-body { font-size: 0.92rem; color: #333; line-height: 1.65; white-space: pre-wrap; }
   </style>
 </head>
 <body>
   <h1>Stock Recommendations</h1>
   <p class="meta">Generated: {{ run_date }} &nbsp;|&nbsp; Universe: {{ total }} tickers scored &nbsp;|&nbsp; Showing top {{ rows | length }}</p>
+
+  {% if ai_summary %}
+  <div class="ai-summary">
+    <div class="ai-summary-header">&#10024; AI Market Summary</div>
+    <div class="ai-summary-body">{{ ai_summary }}</div>
+  </div>
+  {% endif %}
+
   <table>
     <thead>
       <tr>

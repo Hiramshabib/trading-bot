@@ -49,3 +49,6 @@ SCORE_TREND_WEIGHT   = 0.10      # portion of composite score allocated to trend
 
 # --- Optional: Alpha Vantage (leave empty to skip) ---
 ALPHA_VANTAGE_KEY = os.environ.get("ALPHA_VANTAGE_KEY", "")
+
+# --- Optional: Anthropic (leave empty to skip AI summary) ---
+ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
