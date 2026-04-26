@@ -1,6 +1,7 @@
 """
 SQLite persistence: one row per run in `runs`, one row per ticker in `scores`.
 """
+import io
 import sqlite3
 from datetime import datetime
 
@@ -31,6 +32,13 @@ CREATE TABLE IF NOT EXISTS scores (
     rsi_14              REAL,
     vol_ratio           REAL,
     notes               TEXT
+);
+
+CREATE TABLE IF NOT EXISTS data_cache (
+    id        INTEGER PRIMARY KEY AUTOINCREMENT,
+    data_type TEXT NOT NULL,
+    saved_at  TEXT NOT NULL,
+    json_data TEXT NOT NULL
 );
 """
 
@@ -207,3 +215,41 @@ def get_all_scores_with_dates() -> pd.DataFrame:
     )
     con.close()
     return df
+
+
+def save_data_cache(data_type: str, df: pd.DataFrame) -> None:
+    """Persist a raw data DataFrame so it can be used as fallback when live fetching fails."""
+    init_db()
+    con = _connect()
+    con.execute(
+        "INSERT INTO data_cache (data_type, saved_at, json_data) VALUES (?, ?, ?)",
+        (data_type, datetime.now().isoformat(), df.to_json(orient="records")),
+    )
+    # Keep only the 3 most recent entries per type
+    con.execute(
+        """DELETE FROM data_cache
+           WHERE data_type = ? AND id NOT IN (
+               SELECT id FROM data_cache WHERE data_type = ?
+               ORDER BY id DESC LIMIT 3
+           )""",
+        (data_type, data_type),
+    )
+    con.commit()
+    con.close()
+
+
+def load_data_cache(data_type: str) -> pd.DataFrame:
+    """Return the most recently cached DataFrame for data_type, or empty DataFrame if none."""
+    init_db()
+    con = _connect()
+    cur = con.execute(
+        "SELECT json_data, saved_at FROM data_cache WHERE data_type = ? ORDER BY id DESC LIMIT 1",
+        (data_type,),
+    )
+    row = cur.fetchone()
+    con.close()
+    if row:
+        df = pd.read_json(io.StringIO(row[0]), orient="records")
+        print(f"  [WARN] Using cached {data_type} data from {row[1][:10]} (live fetch failed)")
+        return df
+    return pd.DataFrame()

@@ -8,6 +8,7 @@ import pandas as pd
 import yfinance as yf
 
 import config
+from storage.database import save_data_cache, load_data_cache
 
 
 def fetch_analyst_scores(tickers: list[str]) -> pd.DataFrame:
@@ -61,4 +62,11 @@ def fetch_analyst_scores(tickers: list[str]) -> pd.DataFrame:
         time.sleep(config.REQUEST_DELAY_SECONDS)
 
     print()  # newline after progress line
-    return pd.DataFrame(rows)
+    df = pd.DataFrame(rows)
+    if not df.empty and (df["analyst_raw"] == 0).all():
+        cached = load_data_cache("analyst")
+        if not cached.empty:
+            return cached[cached["ticker"].isin(tickers)].reset_index(drop=True)
+    elif not df.empty and not (df["analyst_raw"] == 0).all():
+        save_data_cache("analyst", df)
+    return df
