@@ -35,11 +35,17 @@
     .watch-tag  { display: inline-block; background: #fef3c7; color: #78350f; border-radius: 3px; padding: 1px 5px; font-size: 0.75rem; }
     .neg { color: #dc2626; font-weight: bold; }
     .pos { color: #16a34a; font-weight: bold; }
+    .ai-summary { margin: 1.5rem 0; background: #fff; border-left: 4px solid #2c3e50; box-shadow: 0 1px 3px rgba(0,0,0,0.1); padding: 1rem 1.25rem; border-radius: 0 4px 4px 0; }
+    .ai-summary-header { font-size: 0.82rem; font-weight: 600; color: #2c3e50; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    .ai-summary-body { font-size: 0.92rem; color: #333; line-height: 1.65; white-space: pre-wrap; }
   </style>
 </head>
 <body>
   <h1>Stock Recommendations</h1>
   <p class="meta">Generated: 2026-04-26 &nbsp;|&nbsp; Universe: 50 tickers scored &nbsp;|&nbsp; Showing top 20</p>
+
+  
+
   <table>
     <thead>
       <tr>
@@ -63,7 +69,7 @@
         <td class="rank">1</td>
         <td><strong>AMD</strong></td>
         <td class="score-high">
-          81.9
+          81.7
         </td>
         <td>100.0</td>
         <td>16.3</td>
@@ -90,7 +96,7 @@
         <td class="rank">2</td>
         <td><strong>NVDA</strong></td>
         <td class="score-mid">
-          58.8
+          58.7
         </td>
         <td>40.0</td>
         <td>82.9</td>
@@ -144,7 +150,7 @@
         <td class="rank">4</td>
         <td><strong>TXN</strong></td>
         <td class="score-mid">
-          45.4
+          44.6
         </td>
         <td>73.2</td>
         <td>6.8</td>
@@ -171,7 +177,7 @@
         <td class="rank">5</td>
         <td><strong>MSFT</strong></td>
         <td class="score-mid">
-          44.4
+          44.3
         </td>
         <td>35.2</td>
         <td>90.6</td>
@@ -198,7 +204,7 @@
         <td class="rank">6</td>
         <td><strong>AVGO</strong></td>
         <td class="score-mid">
-          43.8
+          43.5
         </td>
         <td>55.5</td>
         <td>62.6</td>
@@ -223,36 +229,9 @@
       
       <tr>
         <td class="rank">7</td>
-        <td><strong>UNH</strong></td>
-        <td class="score-mid">
-          40.9
-        </td>
-        <td>57.1</td>
-        <td>49.3</td>
-        <td class="score-low">
-          16.2
-        </td>
-        <td>Healthcare</td>
-        <td class="pe-cell">
-          
-            17.1x
-          
-        </td>
-        <td class="rsi-hot">
-          93.4
-        </td>
-        <td class="">
-          1.05x
-        </td>
-        <td>0.41</td>
-        <td class="notes-cell">+31.2% 1mo; +8.8% analyst upside; EPS +1%; Rev +2%</td>
-      </tr>
-      
-      <tr>
-        <td class="rank">8</td>
         <td><strong>NFLX</strong></td>
         <td class="score-mid">
-          40.4
+          40.8
         </td>
         <td>16.0</td>
         <td>60.4</td>
@@ -276,37 +255,37 @@
       </tr>
       
       <tr>
-        <td class="rank">9</td>
-        <td><strong>LLY</strong></td>
+        <td class="rank">8</td>
+        <td><strong>UNH</strong></td>
         <td class="score-mid">
-          38.7
+          40.8
         </td>
-        <td>11.1</td>
-        <td>78.5</td>
-        <td class="score-mid">
-          45.7
+        <td>57.1</td>
+        <td>49.3</td>
+        <td class="score-low">
+          16.2
         </td>
         <td>Healthcare</td>
         <td class="pe-cell">
           
-            21.0x
+            17.1x
           
         </td>
-        <td class="">
-          38.2
+        <td class="rsi-hot">
+          93.4
         </td>
         <td class="">
-          0.95x
+          1.05x
         </td>
-        <td>0.50</td>
-        <td class="notes-cell">-3.5% 1mo; +36.9% analyst upside; EPS +51%; Rev +43%</td>
+        <td>0.41</td>
+        <td class="notes-cell">+31.2% 1mo; +8.8% analyst upside; EPS +1%; Rev +2%</td>
       </tr>
       
       <tr>
-        <td class="rank">10</td>
+        <td class="rank">9</td>
         <td><strong>INTU</strong></td>
         <td class="score-mid">
-          38.4
+          38.3
         </td>
         <td>13.7</td>
         <td>100.0</td>
@@ -330,10 +309,37 @@
       </tr>
       
       <tr>
+        <td class="rank">10</td>
+        <td><strong>LLY</strong></td>
+        <td class="score-mid">
+          38.2
+        </td>
+        <td>11.1</td>
+        <td>78.5</td>
+        <td class="score-mid">
+          45.7
+        </td>
+        <td>Healthcare</td>
+        <td class="pe-cell">
+          
+            21.0x
+          
+        </td>
+        <td class="">
+          38.2
+        </td>
+        <td class="">
+          0.95x
+        </td>
+        <td>0.50</td>
+        <td class="notes-cell">-3.5% 1mo; +36.9% analyst upside; EPS +51%; Rev +43%</td>
+      </tr>
+      
+      <tr>
         <td class="rank">11</td>
         <td><strong>GOOGL</strong></td>
         <td class="score-mid">
-          37.2
+          37.0
         </td>
         <td>39.2</td>
         <td>56.0</td>
@@ -360,7 +366,7 @@
         <td class="rank">12</td>
         <td><strong>BLK</strong></td>
         <td class="score-mid">
-          36.8
+          36.5
         </td>
         <td>25.0</td>
         <td>62.6</td>
@@ -439,33 +445,6 @@
       
       <tr>
         <td class="rank">15</td>
-        <td><strong>SPGI</strong></td>
-        <td class="score-mid">
-          34.7
-        </td>
-        <td>25.2</td>
-        <td>75.7</td>
-        <td class="score-low">
-          28.9
-        </td>
-        <td>Financial Services</td>
-        <td class="pe-cell">
-          
-            19.8x
-          
-        </td>
-        <td class="">
-          51.5
-        </td>
-        <td class="">
-          0.64x
-        </td>
-        <td>1.20</td>
-        <td class="notes-cell">+6.9% 1mo; +22.3% analyst upside; EPS +32%; Rev +9%</td>
-      </tr>
-      
-      <tr>
-        <td class="rank">16</td>
         <td><strong>META</strong></td>
         <td class="score-mid">
           34.6
@@ -492,10 +471,37 @@
       </tr>
       
       <tr>
+        <td class="rank">16</td>
+        <td><strong>SPGI</strong></td>
+        <td class="score-mid">
+          34.5
+        </td>
+        <td>25.2</td>
+        <td>75.7</td>
+        <td class="score-low">
+          28.9
+        </td>
+        <td>Financial Services</td>
+        <td class="pe-cell">
+          
+            19.8x
+          
+        </td>
+        <td class="">
+          51.5
+        </td>
+        <td class="">
+          0.64x
+        </td>
+        <td>1.20</td>
+        <td class="notes-cell">+6.9% 1mo; +22.3% analyst upside; EPS +32%; Rev +9%</td>
+      </tr>
+      
+      <tr>
         <td class="rank">17</td>
         <td><strong>AMGN</strong></td>
         <td class="score-mid">
-          33.6
+          33.2
         </td>
         <td>14.0</td>
         <td>6.7</td>
@@ -522,7 +528,7 @@
         <td class="rank">18</td>
         <td><strong>CRM</strong></td>
         <td class="score-mid">
-          33.2
+          33.1
         </td>
         <td>17.0</td>
         <td>93.8</td>
@@ -547,36 +553,9 @@
       
       <tr>
         <td class="rank">19</td>
-        <td><strong>COST</strong></td>
-        <td class="score-low">
-          32.2
-        </td>
-        <td>23.5</td>
-        <td>29.7</td>
-        <td class="score-mid">
-          36.7
-        </td>
-        <td>Consumer Defensive</td>
-        <td class="pe-cell">
-          
-            45.0x
-          
-        </td>
-        <td class="">
-          47.2
-        </td>
-        <td class="">
-          0.93x
-        </td>
-        <td>0.98</td>
-        <td class="notes-cell">+3.7% 1mo; +6.0% analyst upside; EPS +46%; Rev +22%</td>
-      </tr>
-      
-      <tr>
-        <td class="rank">20</td>
         <td><strong>MA</strong></td>
         <td class="score-low">
-          32.2
+          32.0
         </td>
         <td>17.7</td>
         <td>81.4</td>
@@ -597,6 +576,33 @@
         </td>
         <td>0.83</td>
         <td class="notes-cell">+0.5% 1mo; +29.5% analyst upside; EPS +24%; Rev +18%</td>
+      </tr>
+      
+      <tr>
+        <td class="rank">20</td>
+        <td><strong>COST</strong></td>
+        <td class="score-low">
+          31.7
+        </td>
+        <td>23.5</td>
+        <td>29.7</td>
+        <td class="score-mid">
+          36.7
+        </td>
+        <td>Consumer Defensive</td>
+        <td class="pe-cell">
+          
+            45.0x
+          
+        </td>
+        <td class="">
+          47.2
+        </td>
+        <td class="">
+          0.93x
+        </td>
+        <td>0.98</td>
+        <td class="notes-cell">+3.7% 1mo; +6.0% analyst upside; EPS +46%; Rev +22%</td>
       </tr>
       
     </tbody>
@@ -639,11 +645,11 @@
           </td>
           <td><strong>DHR</strong></td>
           <td>#26</td>
-          <td>#28.4</td>
+          <td>#28.2</td>
           <td><span class="neg">-2</span></td>
           <td class="neg">-5.1%</td>
           <td class="rsi-cold">34.1</td>
-          <td>-1.44</td>
+          <td>-1.43</td>
           <td><span class="flag-tag">PRICE DROP</span><span class="flag-tag">OVERSOLD RSI</span><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -655,11 +661,11 @@
           </td>
           <td><strong>ACN</strong></td>
           <td>#41</td>
-          <td>#33.1</td>
-          <td><span class="pos">+8</span></td>
+          <td>#35.4</td>
+          <td><span class="pos">+6</span></td>
           <td class="neg">-6.5%</td>
           <td class="rsi-cold">33.8</td>
-          <td>-1.98</td>
+          <td>-2.14</td>
           <td><span class="flag-tag">PRICE DROP</span><span class="flag-tag">OVERSOLD RSI</span><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -671,27 +677,11 @@
           </td>
           <td><strong>MRK</strong></td>
           <td>#47</td>
-          <td>#44.1</td>
-          <td><span class="pos">+3</span></td>
+          <td>#44.9</td>
+          <td><span class="pos">+2</span></td>
           <td class="neg">-6.3%</td>
           <td class="rsi-cold">34.1</td>
-          <td>-1.18</td>
-          <td><span class="flag-tag">PRICE DROP</span><span class="flag-tag">OVERSOLD RSI</span><span class="flag-tag">MODEL DOWNGRADE</span></td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="sev-high">
-              HIGH
-            </span>
-          </td>
-          <td><strong>XOM</strong></td>
-          <td>#48</td>
-          <td>#48.5</td>
-          <td><span class="neg">-0</span></td>
-          <td class="neg">-8.8%</td>
-          <td class="rsi-cold">25.8</td>
-          <td>-0.59</td>
+          <td>-1.46</td>
           <td><span class="flag-tag">PRICE DROP</span><span class="flag-tag">OVERSOLD RSI</span><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -702,12 +692,28 @@
             </span>
           </td>
           <td><strong>CVX</strong></td>
-          <td>#49</td>
-          <td>#48.5</td>
-          <td><span class="pos">+0</span></td>
+          <td>#48</td>
+          <td>#48.6</td>
+          <td><span class="neg">-1</span></td>
           <td class="neg">-9.7%</td>
           <td class="rsi-cold">33.2</td>
-          <td>-0.63</td>
+          <td>-0.51</td>
+          <td><span class="flag-tag">PRICE DROP</span><span class="flag-tag">OVERSOLD RSI</span><span class="flag-tag">MODEL DOWNGRADE</span></td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="sev-high">
+              HIGH
+            </span>
+          </td>
+          <td><strong>XOM</strong></td>
+          <td>#49</td>
+          <td>#48.4</td>
+          <td><span class="pos">+1</span></td>
+          <td class="neg">-8.8%</td>
+          <td class="rsi-cold">25.8</td>
+          <td>-0.50</td>
           <td><span class="flag-tag">PRICE DROP</span><span class="flag-tag">OVERSOLD RSI</span><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -723,7 +729,7 @@
           <td>—</td>
           <td class="neg">-5.2%</td>
           <td class="rsi-cold">29.4</td>
-          <td>-1.40</td>
+          <td>-1.18</td>
           <td><span class="flag-tag">PRICE DROP</span><span class="flag-tag">OVERSOLD RSI</span><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -734,12 +740,12 @@
             </span>
           </td>
           <td><strong>INTU</strong></td>
-          <td>#10</td>
-          <td>#10.9</td>
-          <td><span class="neg">-1</span></td>
+          <td>#9</td>
+          <td>#10.8</td>
+          <td><span class="neg">-2</span></td>
           <td class="neg">-7.0%</td>
           <td class="">44.1</td>
-          <td>-0.69</td>
+          <td>-0.82</td>
           <td><span class="flag-tag">PRICE DROP</span><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -750,12 +756,12 @@
             </span>
           </td>
           <td><strong>RTX</strong></td>
-          <td>#35</td>
-          <td>#39.6</td>
-          <td><span class="neg">-5</span></td>
+          <td>#31</td>
+          <td>#39.0</td>
+          <td><span class="neg">-8</span></td>
           <td class="neg">-10.6%</td>
           <td class="rsi-cold">19.2</td>
-          <td>-0.50</td>
+          <td>-0.45</td>
           <td><span class="flag-tag">PRICE DROP</span><span class="flag-tag">OVERSOLD RSI</span></td>
         </tr>
         
@@ -767,11 +773,11 @@
           </td>
           <td><strong>ABT</strong></td>
           <td>#45</td>
-          <td>#46.5</td>
-          <td><span class="neg">-2</span></td>
+          <td>#46.2</td>
+          <td><span class="neg">-1</span></td>
           <td class="neg">-12.5%</td>
           <td class="rsi-cold">26.0</td>
-          <td>+0.22</td>
+          <td>-0.26</td>
           <td><span class="flag-tag">PRICE DROP</span><span class="flag-tag">OVERSOLD RSI</span></td>
         </tr>
         
@@ -787,7 +793,7 @@
           <td>—</td>
           <td class="pos">+57.9%</td>
           <td class="">97.4</td>
-          <td>-1.03</td>
+          <td>-1.16</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -803,7 +809,7 @@
           <td>—</td>
           <td class="pos">+16.6%</td>
           <td class="">86.7</td>
-          <td>-0.87</td>
+          <td>-1.04</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -819,7 +825,7 @@
           <td><span class="pos">+0</span></td>
           <td class="pos">+14.4%</td>
           <td class="">75.0</td>
-          <td>-1.21</td>
+          <td>-1.40</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -831,11 +837,11 @@
           </td>
           <td><strong>AVGO</strong></td>
           <td>#6</td>
-          <td>#4.5</td>
-          <td><span class="pos">+2</span></td>
+          <td>#4.8</td>
+          <td><span class="pos">+1</span></td>
           <td class="pos">+32.6%</td>
           <td class="">92.5</td>
-          <td>-1.57</td>
+          <td>-1.87</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -846,12 +852,12 @@
             </span>
           </td>
           <td><strong>LLY</strong></td>
-          <td>#9</td>
+          <td>#10</td>
           <td>#8.0</td>
-          <td><span class="pos">+1</span></td>
+          <td><span class="pos">+2</span></td>
           <td class="neg">-3.5%</td>
           <td class="">38.2</td>
-          <td>-0.54</td>
+          <td>-0.85</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -863,11 +869,11 @@
           </td>
           <td><strong>GOOGL</strong></td>
           <td>#11</td>
-          <td>#11.5</td>
-          <td><span class="neg">-0</span></td>
+          <td>#11.6</td>
+          <td><span class="neg">-1</span></td>
           <td class="pos">+18.4%</td>
           <td class="">82.3</td>
-          <td>-0.96</td>
+          <td>-1.12</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -879,11 +885,11 @@
           </td>
           <td><strong>BLK</strong></td>
           <td>#12</td>
-          <td>#8.2</td>
-          <td><span class="pos">+4</span></td>
+          <td>#9.0</td>
+          <td><span class="pos">+3</span></td>
           <td class="pos">+6.5%</td>
           <td class="">70.9</td>
-          <td>-1.23</td>
+          <td>-1.53</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -895,11 +901,11 @@
           </td>
           <td><strong>ORCL</strong></td>
           <td>#13</td>
-          <td>#6.2</td>
-          <td><span class="pos">+7</span></td>
+          <td>#7.5</td>
+          <td><span class="pos">+6</span></td>
           <td class="pos">+19.1%</td>
           <td class="">68.0</td>
-          <td>-2.85</td>
+          <td>-3.02</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -915,23 +921,7 @@
           <td><span class="neg">-2</span></td>
           <td class="pos">+24.7%</td>
           <td class="">94.6</td>
-          <td>-1.13</td>
-          <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="sev-low">
-              LOW
-            </span>
-          </td>
-          <td><strong>SPGI</strong></td>
-          <td>#15</td>
-          <td>#16.5</td>
-          <td><span class="neg">-2</span></td>
-          <td class="pos">+6.9%</td>
-          <td class="">51.5</td>
-          <td>-0.81</td>
+          <td>-1.18</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -942,12 +932,28 @@
             </span>
           </td>
           <td><strong>META</strong></td>
-          <td>#16</td>
-          <td>#12.4</td>
-          <td><span class="pos">+4</span></td>
+          <td>#15</td>
+          <td>#13.5</td>
+          <td><span class="pos">+2</span></td>
           <td class="pos">+13.5%</td>
           <td class="">79.6</td>
-          <td>-1.57</td>
+          <td>-1.71</td>
+          <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="sev-low">
+              LOW
+            </span>
+          </td>
+          <td><strong>SPGI</strong></td>
+          <td>#16</td>
+          <td>#16.4</td>
+          <td><span class="neg">-0</span></td>
+          <td class="pos">+6.9%</td>
+          <td class="">51.5</td>
+          <td>-0.97</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -959,11 +965,11 @@
           </td>
           <td><strong>AMGN</strong></td>
           <td>#17</td>
-          <td>#11.1</td>
-          <td><span class="pos">+6</span></td>
+          <td>#12.2</td>
+          <td><span class="pos">+5</span></td>
           <td class="neg">-2.7%</td>
           <td class="">51.9</td>
-          <td>-1.26</td>
+          <td>-1.59</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -975,11 +981,11 @@
           </td>
           <td><strong>CRM</strong></td>
           <td>#18</td>
-          <td>#20.2</td>
+          <td>#20.0</td>
           <td><span class="neg">-2</span></td>
           <td class="neg">-1.8%</td>
           <td class="">45.3</td>
-          <td>-0.76</td>
+          <td>-0.87</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -990,12 +996,28 @@
             </span>
           </td>
           <td><strong>MA</strong></td>
-          <td>#20</td>
-          <td>#18.2</td>
-          <td><span class="pos">+2</span></td>
+          <td>#19</td>
+          <td>#18.9</td>
+          <td><span class="pos">+0</span></td>
           <td class="pos">+0.5%</td>
           <td class="">52.7</td>
-          <td>-1.28</td>
+          <td>-1.46</td>
+          <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="sev-low">
+              LOW
+            </span>
+          </td>
+          <td><strong>COST</strong></td>
+          <td>#20</td>
+          <td>#19.6</td>
+          <td><span class="pos">+0</span></td>
+          <td class="pos">+3.7%</td>
+          <td class="">47.2</td>
+          <td>-0.73</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -1007,11 +1029,11 @@
           </td>
           <td><strong>BAC</strong></td>
           <td>#21</td>
-          <td>#16.1</td>
-          <td><span class="pos">+5</span></td>
+          <td>#17.1</td>
+          <td><span class="pos">+4</span></td>
           <td class="pos">+6.8%</td>
           <td class="">62.8</td>
-          <td>-1.56</td>
+          <td>-1.80</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -1023,11 +1045,11 @@
           </td>
           <td><strong>V</strong></td>
           <td>#22</td>
-          <td>#21.1</td>
-          <td><span class="pos">+1</span></td>
+          <td>#21.8</td>
+          <td><span class="pos">+0</span></td>
           <td class="pos">+1.5%</td>
           <td class="">58.1</td>
-          <td>-1.14</td>
+          <td>-1.32</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -1039,11 +1061,11 @@
           </td>
           <td><strong>ISRG</strong></td>
           <td>#23</td>
-          <td>#26.0</td>
+          <td>#25.6</td>
           <td><span class="neg">-3</span></td>
           <td class="pos">+2.6%</td>
           <td class="">62.5</td>
-          <td>-0.77</td>
+          <td>-0.80</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -1055,11 +1077,11 @@
           </td>
           <td><strong>CSCO</strong></td>
           <td>#24</td>
-          <td>#18.2</td>
-          <td><span class="pos">+6</span></td>
+          <td>#18.9</td>
+          <td><span class="pos">+5</span></td>
           <td class="pos">+9.4%</td>
           <td class="">79.7</td>
-          <td>-1.03</td>
+          <td>-1.50</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -1071,11 +1093,11 @@
           </td>
           <td><strong>AAPL</strong></td>
           <td>#25</td>
-          <td>#21.2</td>
-          <td><span class="pos">+4</span></td>
+          <td>#21.8</td>
+          <td><span class="pos">+3</span></td>
           <td class="pos">+7.3%</td>
           <td class="">62.0</td>
-          <td>-1.11</td>
+          <td>-1.55</td>
           <td><span class="flag-tag">MODEL DOWNGRADE</span></td>
         </tr>
         
@@ -1106,7 +1128,7 @@
           <td>#1</td>
           <td class="rsi-hot">97.4</td>
           <td class="pos">+57.9%</td>
-          <td>81.9</td>
+          <td>81.7</td>
           <td><span class="watch-tag">OVERBOUGHT</span> RSI overbought - may be near a short-term top</td>
         </tr>
         
@@ -1115,7 +1137,7 @@
           <td>#2</td>
           <td class="rsi-hot">86.7</td>
           <td class="pos">+16.6%</td>
-          <td>58.8</td>
+          <td>58.7</td>
           <td><span class="watch-tag">OVERBOUGHT</span> RSI overbought - may be near a short-term top</td>
         </tr>
         
@@ -1124,7 +1146,7 @@
           <td>#4</td>
           <td class="rsi-hot">91.1</td>
           <td class="pos">+40.8%</td>
-          <td>45.4</td>
+          <td>44.6</td>
           <td><span class="watch-tag">OVERBOUGHT</span> RSI overbought - may be near a short-term top</td>
         </tr>
         
@@ -1133,16 +1155,16 @@
           <td>#6</td>
           <td class="rsi-hot">92.5</td>
           <td class="pos">+32.6%</td>
-          <td>43.8</td>
+          <td>43.5</td>
           <td><span class="watch-tag">OVERBOUGHT</span> RSI overbought - may be near a short-term top</td>
         </tr>
         
         <tr>
           <td><strong>UNH</strong></td>
-          <td>#7</td>
+          <td>#8</td>
           <td class="rsi-hot">93.4</td>
           <td class="pos">+31.2%</td>
-          <td>40.9</td>
+          <td>40.8</td>
           <td><span class="watch-tag">OVERBOUGHT</span> RSI overbought - may be near a short-term top</td>
         </tr>
         
@@ -1151,7 +1173,7 @@
           <td>#11</td>
           <td class="rsi-hot">82.3</td>
           <td class="pos">+18.4%</td>
-          <td>37.2</td>
+          <td>37.0</td>
           <td><span class="watch-tag">OVERBOUGHT</span> RSI overbought - may be near a short-term top</td>
         </tr>
         
@@ -1161,6 +1183,15 @@
           <td class="rsi-hot">94.6</td>
           <td class="pos">+24.7%</td>
           <td>35.4</td>
+          <td><span class="watch-tag">OVERBOUGHT</span> RSI overbought - may be near a short-term top</td>
+        </tr>
+        
+        <tr>
+          <td><strong>META</strong></td>
+          <td>#15</td>
+          <td class="rsi-hot">79.6</td>
+          <td class="pos">+13.5%</td>
+          <td>34.6</td>
           <td><span class="watch-tag">OVERBOUGHT</span> RSI overbought - may be near a short-term top</td>
         </tr>
         
